@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/quiz.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<main>
+			<section id="quiz" class="quiz">
+				<div id="dashboard-root">
+					<!-- Dashboard  -->
+				</div>
+				<div id="questions">
+					<!-- Questions  -->
+				</div>
+			</section>
+
+			<template id="question-wrapper">
+				<article>
+					<div class="show answer-symbol white"></div>
+					<h3>Question: <span></span></h3>
+					<h1></h1>
+					<div class="answer-wrapper">
+						<!-- Answers  -->
+					</div>
+				</article>
+			</template>
+
+			<template id="multiple">
+				<div class="radio-container">
+					<input id="" />
+					<label id="option" for=""> </label>
+					<label id="answer" class="show answer correct" for=""></label>
+				</div>
+			</template>
+
+			<template id="text">
+				<div>
+					<input type="text" />
+					<label id="answer" class="show answer correct"></label>
+				</div>
+			</template>
+
+			<template id="result">
+				<article>
+					<button class="submit" id="submit">Submit</button>
+					<div class="show result">
+						<h1>Congratulations!</h1>
+						<p>Total score <span id="score">4/5</span></p>
+					</div>
+				</article>
+			</template>
+
+			<template id="dashboard-template">
+				<article class="create">
+					<form>
+						<h3 id="welcome">Create quiz</h3>
+						<div class="control show">
+							<h4>Name</h4>
+							<div>
+								<input id="quiz-name" type="text" placeholder="What is the name of your quiz?" />
+							</div>
+						</div>
+						<div class="control show">
+							<h4>Question</h4>
+							<input id="create" type="text" placeholder="Enter a new question..." spellcheck="true" />
+						</div>
+						<div class="control show">
+							<h4>Type</h4>
+							<div>
+								<input id="radio-text" name="optionType" type="radio" />
+								<label for="radio-text"> Text Field </label> <br />
+								<input id="radio-multi" type="radio" name="optionType" checked />
+								<label for="radio-multi"> Multiple Option</label> <br />
+							</div>
+						</div>
+						<div class="control" id="container-text" >
+							<h4>Answer</h4>
+							<div>
+								<input id="answers" type="text" placeholder="Enter your answer (-s) here..." /><br />
+								<i><span for="answers">Answers may be separated by comma (elk, moose, reindeer) </span> </i><br />
+							</div>
+						</div>
+
+						<div class="control show" id="container-multi" >
+							<h4>Options</h4>
+							<div class="container-multi-block">
+								<span>Enter answers and check if correct</span>
+
+                                <div id="container-multi-block-options">
+                                    <div id="options-items">
+                                        <template id="option-template">
+                                            <div class="grid-container">
+                                                <input class="one" type="text" name="" placeholder="Enter your option here..." />
+                                                <div class="two">
+                                                    <input type="checkbox" name="" />
+                                                </div>
+                                                <button class="three">🗑</button> 
+                                            </div>
+                                        </template>
+                                    </div>
+                                    <div class="grid-container">
+                                        <button id="add-option" class="three">+</button> 
+                                    </div>
+                                </div>
+							</div>
+						</div>
+
+						<div class="control show">
+							<h4>Behaviour</h4>
+							<div>
+								<input id="required" type="checkbox" />
+								<label for="required">is required</label> <br />
+
+								<input id="usestrict" type="checkbox" />
+								<label for="usestrict">use strict <i>(cat but not cats)</i></label> <br />
+							</div>
+						</div>
+						<div class="control show">
+							<h4>Action</h4>
+							<div>
+                                <input type="reset" value="Reset">
+                                <input type="button" value="Done">
+                                <input type="submit" value="Submit">
+							</div>
+						</div>
+					</form>
+				</article>
+			</template>
+		</main>
+		<script type="module" src="../js/quiz.js"></script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+/* Animations */
+.clicked {
+	animation: clickAnimation 0.15s;
+}
+
+.animate-in {
+    animation: animateIn 0.5s;
+}
+
+@keyframes animateIn {
+    0% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+@keyframes clickAnimation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.97);
+	}
+	100% {
+		transform: scale(1);
+	}
+}

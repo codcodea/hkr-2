@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./src/css/contact-form.css" />
+		<title>Quiz</title>
+	</head>
+	<body>
+		<main>
+			<section class="contact">
+				<article class="wrapper">
+					<form>
+						<fieldset>
+							<legend>Welcome visitor<span id="visitor"></span>!</legend>
+
+							<label for="first-name">First Name: </label>
+							<input
+								class="name"
+								autocomplete="given-name"
+								name="first-name"
+								placeholder="Anna"
+								required
+								pattern="\p{L}*"
+							/><br />
+
+							<label for="last-name">Last Name: </label>
+							<input
+								type="text"
+								autocomplete="family-name"
+								class="name"
+								name="last-name"
+								placeholder="Andersson"
+								required
+								pattern="\p{L}*"
+							/><br />
+
+							<label for="email">E-mail: </label>
+							<input
+								type="email"
+								autocomplete="email"
+								class="email"
+								name="email"
+								placeholder="Your e-mail adress"
+								required
+								pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+							/><br />
+							<input class="submit" type="submit" value="Send" />
+						</fieldset>
+					</form>
+
+					<span id="welcome">
+						<p>Click Continue to proceed with your quizzes,</p>
+						<p>or <button>Delete</button> to delete your account and progress</p>
+					</span>
+				</article>
+			</section>
+		</main>
+		<script type="module" src="./src/js/contact-form.js"></script>
+	</body>
+</html>
+
+<!-- References: 
+
+    Regexp unicode: https://javascript.info/regexp-unicode 
+    Regexp emails: https://www.w3schools.com/tags/att_input_pattern.asp
+
+-->

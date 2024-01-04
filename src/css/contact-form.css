@@ -1,0 +1,142 @@
+@import "./main.css";
+
+#welcome {
+    display: none;
+    max-width: 100%;
+    text-align: center;
+    color: var(--theme-dark);
+
+    margin-bottom: 2rem;
+
+    & p {   
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 0.2rem;
+    }
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin-top: -10vh;
+}
+
+section.contact {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 5vh 0;
+
+}
+
+article.wrapper {
+	width: 50vw;
+	padding: 3rem;
+	box-shadow: var(--shadow);
+    background-color: var(--white-1);
+    border: 3px solid var(--gray-8);
+    border-radius: 8px;
+}
+
+fieldset {
+	margin: 1rem;
+	padding: 1rem;
+	font-weight: 600;
+	font-size: 1.5rem;
+	border: transparent;
+	border-radius: 8px;
+	color: var(--theme-dark);
+    /* border: 1px solid var(--theme-light); */
+}
+
+legend {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: var(--theme-dark);
+}
+
+label {
+	display: inline-block;
+	margin-bottom: 0.4rem;
+	font-size: 1rem;
+	font-weight: 400;
+	align-self: baseline;
+	color: var(--theme-dark);
+}
+
+input {
+	width: 100%;
+	height: 50px;
+
+	margin-bottom: 10px;
+	padding-left: 1em;
+
+    color: var(--theme-light);
+	border: 1px solid var(--gray-8);
+	border-radius: 8px;
+
+	font-size: 1.2rem;
+    outline: none;
+
+    &:focus {
+		border: 1px solid var(--theme-light);
+        background-color: var(--white-1);
+	}
+
+
+	&::placeholder {
+		color: var(--gray-7);
+	}
+    &:required {
+        border-width: 1px;
+    }
+    &:required:invalid {
+        border-color: var(--theme-accent-2)
+    }
+
+    &:required:valid {
+        border-color: var(--theme-lighter)
+    }
+}
+
+input[type="submit"] {
+	width: 100%;
+
+    margin-top: 2rem;
+	padding: 10px;
+
+	font-size: 1.1rem;
+	font-weight: 600;
+
+	outline: none;
+    border: none;
+
+	color: var(--gray-1);
+	background-color: var(--theme-accent-1);
+	opacity: 0.9;
+
+	transition: scale 0.2s ease-in-out;
+
+	&:hover {
+		scale: 1.03;
+		cursor: pointer;
+	}
+}
+
+@media (width <= 680px) {
+	article.wrapper {
+		padding: 1rem;
+		width: 85vw;
+	}
+}
+
+@media (681px <= width <= 1124px) {
+	article.wrapper {
+		padding: 2rem;
+		width: 60vw;
+	}
+}

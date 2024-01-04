@@ -1,0 +1,104 @@
+{
+    "scandinavia": [
+        {
+            "id": "q1",
+            "sort": 1,
+            "type": "multiple",
+            "isRadio": true,
+            "question": "What is the capital of Sweden?",
+            "correct_answer": ["Stockholm"],
+            "incorrect_answers": [
+                "Oslo",
+                "Helsinki",
+                "Copenhagen",
+                "Reykjavik"
+            ]
+        },
+        {
+            "id": "q2",
+            "sort": 2,
+            "type": "multiple",
+            "isRadio": false,
+            "question": "What cities are in Scandinavia?",
+            "correct_answer": ["Stockholm", "Oslo", "Copenhagen"],
+            "incorrect_answers": [
+                "Reykjavik",
+                "Helsinki"
+            ]
+        },
+        {
+            "id": "q3",
+            "sort": 3,
+            "type": "multiple",
+            "isRadio": true,
+            "question": "What is the name of the Swedish king?",
+            "correct_answer": ["Carl XVI Gustaf"],
+            "incorrect_answers": [
+                "Carl XV Gustaf",
+                "Carl XIV Gustaf",
+                "Carl XVII Gustaf",
+                "Carl II Alfred"
+            ]
+        },
+        {
+            "id": "q4",
+            "sort": 4,
+            "type": "text",
+            "isRadio": false,
+            "question": "What animal is the king of the forest?",
+            "correct_answer": ["moose", "elk"],
+            "incorrect_answers": []
+        },
+        {
+            "id": "q5",
+            "sort": 5,
+            "type": "multiple",
+            "isRadio": true,
+            "question": "What is 'Treriksröset'?",
+            "correct_answer": ["The geographic point"],
+            "incorrect_answers": [
+                "A Viking ship",
+                "A mountain",
+                "A museum"
+            ]
+        }
+    ],
+    "puzzle": [
+        {
+            "id": "q1",
+            "sort": 1,
+            "type": "multiple",
+            "isRadio": true,
+            "question": "If it is not true that no chili is spicy, does that mean some chili is spicy?",
+            "correct_answer": ["True"],
+            "incorrect_answers": [
+                "False"
+            ],
+            "explanation": "The statement is a double negative, which can be simplified to 'some chili is spicy.' Therefore, the conclusion is that at least some chili is spicy."
+        },
+        {
+            "id": "q2",
+            "sort": 2,
+            "type": "multiple",
+            "isRadio": true,
+            "question": "If spicy dishes are not desserts, and all curries are spicy, can a curry be a dessert?",
+            "correct_answer": ["False"],
+            "incorrect_answers": [
+                "True"
+            ],
+            "explanation": "Since no spicy dishes are desserts, and curries are spicy, no curry can be a dessert."
+        },
+        {
+            "id": "q3",
+            "sort": 3,
+            "type": "multiple",
+            "isRadio": true,
+            "question": "If all paradoxes are puzzles, and some puzzles are not solved, can all paradoxes be unsolved?",
+            "correct_answer": ["True"],
+            "incorrect_answers": [
+               "False"
+            ],
+            "explanation": "Paradoxes are not obligated to be exclusively solved or unsolved; however, they have the potential to be either. They all 'can' be unsolved (or solved)"
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Helvetica;
+}
+
+:root {
+	--theme-dark: #232f48;
+	--theme-light: #535c6e;
+	--theme-ligher: #c1c5ce;
+	--theme-bright: #f5f7fa;
+	--theme-accent-1: #4e545a;
+	--theme-accent-2: #eb476a;
+
+	--linear-gradient-1: linear-gradient(180deg, var(--theme-accent) 0%, var(--theme-accent-2) 100%);
+	--linear-gradient-2: linear-gradient(48deg, var(--theme-accent-2) 0%, var(--theme-accent) 100%);
+	--linear-gradient-3: linear-gradient(180deg, var(--theme-dark) 0%, var(--theme-accent) 100%);
+
+	--bg-color: var(--white-0);
+	--bg-section: rgb(244, 244, 244);
+
+	--white-0: white;
+	--white-1: #fafafa;
+
+	--gray-0: rgb(9, 9, 9);
+	--gray-1: #131313;
+	--gray-2: #212121;
+	--gray-3: #393939;
+	--gray-4: #5b5b5b;
+	--gray-5: #707070;
+	--gray-6: #8a8a8a;
+	--gray-7: #b3b3b3;
+	--gray-8: #e6e6e6bb;
+
+	--shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+	--shadow-mobile: 0 0px 3px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+
+	--border-radius: 4px;
+
+    --correct-answer: rgb(53, 139, 53);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--gray-1);
+}
+
+main {
+	max-width: 1124px;
+	overflow-x: hidden;
+	margin: 0 auto;
+	background-color: var(--theme-dark);
+}
+
+section {
+	width: 100%;
+}
+
+img {
+	-webkit-user-drag: none;
+	user-select: none;
+}
+
+/* Colors  */
+.white {
+	color: var(--white-0);
+}
+
+.black {
+	color: var(--gray-0);
+}
+
+.correct {
+	color: var(--correct-answer)
+}
+
+.incorrect {
+	color: var(--theme-accent-2);
+}
+
+/* Hiding UI until web components are loaded  */
+@supports selector(:has(*)) {
+	main:has(my-toolbar:not(:defined), my-footer:not(:defined)) {
+		display: none;
+	}
+
+	main:has(my-toolbar, my-footer) {
+		display: block;
+	}
+}
