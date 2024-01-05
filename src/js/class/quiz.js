@@ -36,7 +36,6 @@ class Quiz {
         }
 		
 		this.score = new ScoreBoard();
-
         if(this.quiz) this.render();
 	}
 
@@ -55,7 +54,6 @@ class Quiz {
 
 	render() {
 		const root = document.getElementById("questions");
-
 		const nodes = [];
 
 		this.quiz.forEach((question, index) => {
@@ -84,11 +82,8 @@ class Quiz {
 		});
 
 		root.append(...nodes);
-
-		// initialize the score board state
 		this.score.initState(this.quiz);
 
-		// add the sumbit button and pass the handler function
 		const r = onSubmit(this["result"], this.toggleResult);
 		root.appendChild(r);
 	}

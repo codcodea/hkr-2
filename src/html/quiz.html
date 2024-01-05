@@ -55,55 +55,62 @@
 
 			<template id="dashboard-template">
 				<article class="create">
-					<form>
+					<form enctype="multipart/form-data">
 						<h3 id="welcome">Create quiz</h3>
+
 						<div class="control show">
 							<h4>Name</h4>
 							<div>
-								<input id="quiz-name" type="text" placeholder="What is the name of your quiz?" />
+								<input id="quiz-name" type="text" name="name" placeholder="What is the name of your quiz?" />
 							</div>
 						</div>
+
 						<div class="control show">
 							<h4>Question</h4>
-							<input id="create" type="text" placeholder="Enter a new question..." spellcheck="true" />
+                            <div>
+                                <input id="create" type="text" name="question" placeholder="Enter a new question..." spellcheck="true" />
+                            </div>
 						</div>
+
 						<div class="control show">
 							<h4>Type</h4>
 							<div>
-								<input id="radio-text" name="optionType" type="radio" />
+								<input id="radio-text" name="type" type="radio" value="text"/>
 								<label for="radio-text"> Text Field </label> <br />
-								<input id="radio-multi" type="radio" name="optionType" checked />
+								<input id="radio-multi" type="radio" name="type" value="multi" checked />
 								<label for="radio-multi"> Multiple Option</label> <br />
 							</div>
 						</div>
-						<div class="control" id="container-text" >
+
+						<div class="control" id="option-text" >
 							<h4>Answer</h4>
 							<div>
-								<input id="answers" type="text" placeholder="Enter your answer (-s) here..." /><br />
+								<input id="answers" type="text" name="answers" placeholder="Enter your answer (-s) here..." /><br />
 								<i><span for="answers">Answers may be separated by comma (elk, moose, reindeer) </span> </i><br />
 							</div>
 						</div>
 
-						<div class="control show" id="container-multi" >
+						<div class="control show" id="option-multi" >
 							<h4>Options</h4>
-							<div class="container-multi-block">
+							<div class="multiple-options-container">
 								<span>Enter answers and check if correct</span>
 
-                                <div id="container-multi-block-options">
-                                    <div id="options-items">
-                                        <template id="option-template">
+                                <div id="multiple-options">
+                                    <div id="multiple-options-items">
+                                        <template id="options-template">
                                             <div class="grid-container">
-                                                <input class="one" type="text" name="" placeholder="Enter your option here..." />
-                                                <div class="two">
+                                                <input class="c1" type="text" name="" placeholder="Enter your option here..." />
+                                                <div class="c2">
                                                     <input type="checkbox" name="" />
                                                 </div>
-                                                <button class="three">🗑</button> 
+                                                <button class="c3">🗑</button> 
                                             </div>
                                         </template>
                                     </div>
                                     <div class="grid-container">
-                                        <button id="add-option" class="three">+</button> 
+                                        <button id="plus-button" class="c3">+</button> 
                                     </div>
+
                                 </div>
 							</div>
 						</div>
@@ -111,13 +118,14 @@
 						<div class="control show">
 							<h4>Behaviour</h4>
 							<div>
-								<input id="required" type="checkbox" />
+								<input id="required" type="checkbox" name="isRequired"/>
 								<label for="required">is required</label> <br />
 
-								<input id="usestrict" type="checkbox" />
+								<input id="usestrict" type="checkbox" name="useStrict"/>
 								<label for="usestrict">use strict <i>(cat but not cats)</i></label> <br />
 							</div>
 						</div>
+                        
 						<div class="control show">
 							<h4>Action</h4>
 							<div>

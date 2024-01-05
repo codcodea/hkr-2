@@ -22,6 +22,7 @@ const getMultiple = (question, node, onChange) => {
 		input.name = question.id;
 		input.value = a;
 		input.onchange = onChange;
+       
 
 		const option = clone.querySelector("#option");
 		option.htmlFor = question.id;
@@ -46,7 +47,7 @@ const getText = (question, node, onChange) => {
 	input.name = question.id;
 	input.placeholder = "Type your answer here";
 	input.onchange = onChange;
-
+    
 	const answer = clone.querySelector("#answer");
 	answer.for = question.id;
 	answer.innerHTML = question.correct_answer;
