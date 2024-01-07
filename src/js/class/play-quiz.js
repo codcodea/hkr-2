@@ -1,70 +1,70 @@
 import { fetchStaticQuiz, fetchDynamicQuiz, fetchCustomQuiz } from "./handlers/fetch.js";
 import { getMultiple, getText, onSubmit, getQuestionWrapper } from "./handlers/dom.js";
-import { ScoreBoard } from "./score.js";
-import { CreateDashboard } from "./create.js";
-
-/*
-    Quiz class
-    - initQuiz: gets the HTML document templates and calls the appropriate init function
-    - render: renders the quiz to the DOM
-    - getMultiple, getText, getResult, getQuestionWrapper: helper functions that populate the templates
-    - inputValidation: validates the data of the quiz
-    - shuffle: shuffles the answers array
-*/
+import { ScoreTracker } from "./score-tracker.js";
+import { LocalStore } from "./local-storage.js";
 
 class Quiz {
-	constructor(param) {
-		this.name = param;
-		this.toggleResult = this.toggleResult.bind(this);
+	constructor(param, controls = false) {
+		this.param = param;
+        this.controls = controls; 
+        this.toggleResult = this.toggleResult.bind(this); 
+        this.handleQuiz = this.handleQuiz.bind(this);
 	}
 
-	async initQuiz() {
+	async init() {
+        this.score = new ScoreTracker();
+        this.store = new LocalStore();
+
 		["text", "multiple", "result"].forEach((template) => {
 			const t = document.getElementById(template);
 			this[template] = t.cloneNode(true).content;
 		});
 
-        switch (this.name) {
-            case "random-quiz":
-                await this.initDynamicQuiz();
-                break;
-            case "create-quiz":
-                await this.initCustomQuiz();
-                break;
-            default:
-                await this.initStaticQuiz();
-        }
-		
-		this.score = new ScoreBoard();
-        if(this.quiz) this.render();
+        this.remove();
+
+		switch (this.param) {
+			case "random-quiz":
+				await this.initDynamicQuiz();
+				break;
+			case "scandinavia":
+			case "puzzle":
+				await this.initStaticQuiz();
+				break;
+			default:
+				this.initCustomQuiz();
+		}
+		if (this.quiz) this.render();
+	}
+
+	remove() {
+		document.getElementById("questions").innerHTML = "";
 	}
 
 	async initStaticQuiz() {
-		this.quiz = await fetchStaticQuiz(this.name);
+		this.quiz = await fetchStaticQuiz(this.param);
 	}
 
 	async initDynamicQuiz() {
-		this.quiz = await fetchDynamicQuiz();
+		this.quiz = await fetchDynamicQuiz(this.param);
 	}
 
-	async initCustomQuiz() {
-        this.quiz = await fetchCustomQuiz(this.name);
-        new CreateDashboard(this.name);
-    }
+	initCustomQuiz() {
+		console.log("initCustomQuiz");
+		this.quiz = this.store.getQuiz(this.param);
+	}
 
 	render() {
+        this.remove();
+
 		const root = document.getElementById("questions");
 		const nodes = [];
 
 		this.quiz.forEach((question, index) => {
-			// validate input
 			question = this.inputValidation(question, index);
 
-			// get a question-wrapper template
-			const wrapper = getQuestionWrapper(question, index);
+			const wrapper = getQuestionWrapper(question, index, this.controls, this.handleQuiz);
 			const answers = wrapper.querySelector(".answer-wrapper");
 
-          	// populate template
 			switch (question.type) {
 				case "multiple":
 				case "boolean":
@@ -88,8 +88,9 @@ class Quiz {
 		root.appendChild(r);
 	}
 
-	// Adds event listener to toggle the result visibility
 	toggleResult(e) {
+        
+        if(e.target.textContent == "Done") return window.location = "overview.html";
 		document.querySelectorAll(".show").forEach((show) => show.classList.toggle("now"));
 
 		const symbols = document.querySelectorAll(".answer-symbol");
@@ -104,13 +105,31 @@ class Quiz {
 
 		const display = document.getElementById("score");
 		display.innerHTML = `${score}/${this.quiz.length}`;
+
+        e.target.textContent = "Done";
 	}
+
+    handleQuiz(e) {
+        const q = e.target.dataset.question;
+        switch(e.target.textContent) {
+            case "X":
+                this.quiz = this.store.deleteQuestion(this.param, q);
+                break;
+            case "↑":
+                this.quiz = this.store.sortQuestion(this.param, q, "up"); 
+                break;
+            case "↓":
+                this.quiz = this.store.sortQuestion(this.param, q, "down");
+                break;
+        }
+        this.render();
+    }
 
 	inputValidation(q, i) {
 		if (typeof q.correct_answer == "string") q.correct_answer = [q.correct_answer];
 		if ("id" in q === false) (q.id = `q${i + 1}`), (q.sort = i + 1);
-        q.isRadio = q.correct_answer.length == 1 ? true : false;
-        return q
+		q.isRadio = q.correct_answer.length == 1 ? true : false;
+		return q;
 	}
 
 	shuffle(arr) {
@@ -118,4 +137,4 @@ class Quiz {
 	}
 }
 
-export default Quiz;
+export { Quiz };

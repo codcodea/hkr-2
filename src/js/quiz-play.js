@@ -1,4 +1,5 @@
-import Quiz from "./class/quiz.js";
+import { Quiz } from "./class/play-quiz.js";
+import { CreateQuiz } from "./class/create-quiz.js";
 
 /*
     start the quiz
@@ -11,7 +12,13 @@ async function start() {
 	const params = new URLSearchParams(window.location.search);
 	const param = params.get("id");
 
-	await new Quiz(param).initQuiz();
+	if (param == "create-quiz") {
+		console.log("create quiz");
+		await new CreateQuiz().init();
+	} else {
+		console.log("start quiz");
+		await new Quiz(param, false).init();
+	}
 
 	// intersectionObserver();
 }

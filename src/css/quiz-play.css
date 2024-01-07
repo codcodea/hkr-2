@@ -1,6 +1,6 @@
 @import "./main.css";
-@import "./quiz-form.css";
-@import "./quiz-anim.css";
+@import "./quiz-question.css";
+@import "./quiz-animate.css";
 
 main {
 	min-height: 100vh;
@@ -30,21 +30,54 @@ article {
 		font-size: 1.6rem;
 		margin: 1.5rem 1rem;
 	}
-	& h3 {
-		font-size: 1.1rem;
-		padding: 0.7rem;
-		margin: 0.7rem 0;
-		color: var(--white-0);
-		background-color: var(--theme-accent-1);
-	}
+
+    & .q-head {
+        background-color: var(--theme-accent-1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem;
+
+        & h3 {
+            display: inline;
+            font-size: 1.1rem;
+            color: var(--white-0);
+        }
+    
+        & .q-controls {
+            display: flex;
+        }
+
+        & select {
+           outline: none;
+           min-width: 80px;
+        }
+
+        & button {
+            margin-left: 0.5rem;
+            padding: 0.3rem 0.5rem;
+            border: none;
+            background-color: var(--theme-accent-2);
+            color: var(--white-0);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+
+            &:hover {
+                background-color: var(--theme-accent-3);
+            }
+        }
+    }
+
 	& p {
 		font-size: 1rem;
 		margin: 0.5rem 1rem;
 	}
 	& .answer-symbol {
 		position: absolute;
-		top: 48px;
-		right: 45px;
+		top: 38px;
+		right: 50px;
 		font-size: 30px;
 		color: rgb(255, 255, 255);
 	}
@@ -64,13 +97,13 @@ article {
 	& > div {
 		margin-bottom: 0.35rem;
 	}
+}
 
-    /* Answers visiability */
-    & .show {
-        visibility: hidden;
-        &.now {
-            visibility: visible;
-        }
+/* Answers visiability */
+.show {
+    visibility: hidden;
+    &.now {
+        visibility: visible;
     }
 }
 

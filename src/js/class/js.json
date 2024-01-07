@@ -1,11 +1,13 @@
 {
-    "name": "Anna Anna",
-    "question": "123",
-    "type": "multi",
-    "answers": "",
-    "option-jwj": "Edor",
-    "option-xpv": "Stine",
-    "option-xpv-on": "on",
-    "option-8ec": "",
-    "useStrict": "on"
+    "name": "MyQuiz",
+    "question": "What is the meaning of life?",
+    "type": "multiple",
+    "isRequired": true,
+    "useStrict": false,
+    "correct_answer": [
+        "Eat"
+    ],
+    "incorrect_answers": [
+        "Sleep"
+    ]
 }

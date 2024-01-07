@@ -1,7 +1,16 @@
 // Populate the question-wrapper template
-const getQuestionWrapper = (question) => {
-	const node = document.getElementById("question-wrapper").cloneNode(true).content;
-	node.querySelector("span").innerHTML = question.id.split("q")[1];
+const getQuestionWrapper = (question, index, hasControls, handler) => {
+	const node = document.getElementById("question").cloneNode(true).content;
+    
+    const ctrl = node.querySelector(".q-controls");
+    ctrl.style.display = hasControls ? "flex" : "none";
+
+    [...ctrl.children].forEach((c) => {
+        c.addEventListener("click", handler);
+        c.dataset.question = question.id ;
+    });
+    
+    node.querySelector("span").innerHTML = index + 1;
 	node.querySelector(".answer-symbol").dataset.question = question.id;
 	node.querySelector("h1").innerHTML = question.question;
 	return node;
@@ -22,7 +31,6 @@ const getMultiple = (question, node, onChange) => {
 		input.name = question.id;
 		input.value = a;
 		input.onchange = onChange;
-       
 
 		const option = clone.querySelector("#option");
 		option.htmlFor = question.id;
@@ -47,13 +55,31 @@ const getText = (question, node, onChange) => {
 	input.name = question.id;
 	input.placeholder = "Type your answer here";
 	input.onchange = onChange;
-    
+
 	const answer = clone.querySelector("#answer");
 	answer.for = question.id;
 	answer.innerHTML = question.correct_answer;
 
 	return clone;
 };
+
+const getOptions = (list) => {
+
+    const fragment = document.createDocumentFragment();
+
+    const option = document.createElement("option");
+    option.value = "new";
+    option.innerText = "New Quiz";
+    fragment.appendChild(option);
+
+    list.forEach((name) => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.innerText = name;
+        fragment.appendChild(option);
+    });
+    return fragment;
+}
 
 // Populate the result template
 const onSubmit = (node, handler) => {
@@ -62,4 +88,4 @@ const onSubmit = (node, handler) => {
 	return result;
 };
 
-export { getQuestionWrapper, getMultiple, getText, onSubmit };
+export { getQuestionWrapper, getMultiple, getText, onSubmit, getOptions };

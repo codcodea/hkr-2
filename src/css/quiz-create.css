@@ -1,25 +1,23 @@
-
 article.create {
 	display: grid;
 	grid-template-rows: repeat(5, fit-content);
-    row-gap: 0.7rem;
+	row-gap: 0.7rem;
 }
 
 .control {
+	--border-radius: 4px;
+	--option-height: 40px;
 
-    --border-radius: 4px;
-    --option-height: 40px;
+	display: grid;
+	grid-template-columns: 1fr 5fr;
 
-    display: none;
+	&.hide {
+		display: none;
+	}
 
-    &.show{
-        display: grid;
-        grid-template-columns: 1fr 5fr;
-    }
-
-    background-color: var(--gray-8);
-    border-left: 4px solid var(--theme-accent-2);
-    padding: 1rem;
+	background-color: var(--gray-8);
+	border-left: 4px solid var(--theme-accent-2);
+	padding: 1rem;
 
 	& h4 {
 		grid-column: 1;
@@ -27,92 +25,139 @@ article.create {
 		padding: 0;
 	}
 
-    & i {
-       font-size: 0.8rem;
-       color: var(--gray-5);
-       margin: 1.5rem 0.5rem;
-    }
+	& i {
+		font-size: 0.8rem;
+		color: var(--gray-5);
+		margin: 1.5rem 0.5rem;
+	}
 
 	& [type="text"] {
 		grid-column: 2;
 		width: 100%;
 		height: var(--option-height);
-        border-radius: var(--border-radius)
+		border-radius: var(--border-radius);
 	}
 
-    & [type="checkbox"], [type="radio"] {
-        grid-column: 2;
-        width: 18px;
-        height: 18px;
-        margin: 4px;
-        padding: 4px;
-    }
+	& [type="checkbox"],
+	[type="radio"] {
+		grid-column: 2;
+		width: 18px;
+		height: 18px;
+		margin: 4px;
+		padding: 4px;
+	}
 
-    & [type="submit"], [type="button"], [type="reset"] {
-        width: 100px;
-        height: var(--option-height);
-    }
+	& [type="submit"],
+	[type="button"],
+	[type="reset"] {
+		width: 100px;
+		height: var(--option-height);
+	}
 
 	& label {
-        margin-left: 0.3rem;
+		margin-left: 0.3rem;
 		font-size: 1rem;
 		margin-top: 0.6rem;
 	}
 
-	& [placeholder]{
+	& [placeholder] {
 		font-size: 1rem;
 	}
 
-    & .multiple-options-container {
-        display: block;
+	& .m-container {
+		display: block;
 
-        & #multiple-options {
-           margin-top: 1rem;
-        }
-  
-        & .grid-container {
-            display: grid;
-            grid-template-columns: 8fr 1fr 1fr;
-            gap: 0.4rem;
+		& #m-options {
+			margin-top: 1rem;
+		}
 
-            margin-top: 2rem;
-            margin: 0.5rem 0;
+		& .grid-container {
+			display: grid;
+			grid-template-columns: 8fr 1fr 1fr;
+			gap: 0.4rem;
 
-            height: var(--option-height);
+			margin-top: 2rem;
+			margin: 0.5rem 0;
 
-            & .c1 {
-                grid-column: 1;          
-            }
+			height: var(--option-height);
 
-            & .c2 {
-                grid-column: 2;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border: 1px solid var(--gray-3)
-            }
+			& .c1 {
+				grid-column: 1;
+			}
 
-            & .c3 {
-                grid-column: 3;
-            }
+			& .c2 {
+				grid-column: 2;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: 1px solid var(--gray-3);
+			}
 
-            & input[type="text"] {
-                width: 100%;
-               
-            }
+			& .c3 {
+				grid-column: 3;
+			}
 
-            & input[type="checkbox"] {
-                width: 18px;
-                height: 18px;
-                margin: 0;
-                padding: 0;
-            }
-        }
-    }
+			& input[type="text"] {
+				width: 100%;
+			}
 
-  
+			& input[type="checkbox"] {
+				width: 18px;
+				height: 18px;
+				margin: 0;
+				padding: 0;
+			}
+		}
+	}
+
+	& .actions {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+
+		& input {
+			width: 80px;
+			height: 30px;
+			margin-left: 1rem;
+
+			border: 1px solid var(--theme-accent-1);
+			border-radius: 4px;
+			outline: none;
+
+			transition: border 0.1s ease-in-out;
+
+			&[type="button"]:disabled {
+				border: 1px solid var(--gray-7);
+				background-color: var(--gray-8);
+			}
+
+			&:hover {
+				cursor: pointer;
+				border-left: 8px solid var(--theme-accent-1);
+			}
+		}
+	}
 }
 
+@media (width <= 680px) {
+	article.create {
+		height: fit-content;
+	}
 
+	.control {
+		display: grid;
+		grid-template-columns: 1fr;
 
+		& h4 {
+			display: none;
+		}
+		& [type="text"],
+		[type="checkbox"],
+		[type="radio"] {
+			grid-column: 1;
+		}
+	}
+}
 
+@media (681px <= width <= 1124px) {
+}

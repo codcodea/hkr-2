@@ -3,141 +3,151 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../css/quiz.css" />
+		<link rel="stylesheet" href="../css/quiz-play.css" />
 		<title>Document</title>
 	</head>
 	<body>
 		<main>
 			<section id="quiz" class="quiz">
-				<div id="dashboard-root">
-					<!-- Dashboard  -->
+				<div id="root">
+					<!-- Create Quiz Form  -->
 				</div>
 				<div id="questions">
 					<!-- Questions  -->
 				</div>
 			</section>
+		</main>
 
-			<template id="question-wrapper">
-				<article>
-					<div class="show answer-symbol white"></div>
+		<!-- Template: A wrapper for each question -->
+		<template id="question">
+			<article>
+				<div class="show answer-symbol white"></div>
+				<div class="q-head">
 					<h3>Question: <span></span></h3>
-					<h1></h1>
-					<div class="answer-wrapper">
-						<!-- Answers  -->
+					<div class="q-controls">
+						<button>X</button>
+						<button>↑</button>
+						<button>↓</button>
 					</div>
-				</article>
-			</template>
-
-			<template id="multiple">
-				<div class="radio-container">
-					<input id="" />
-					<label id="option" for=""> </label>
-					<label id="answer" class="show answer correct" for=""></label>
 				</div>
-			</template>
 
-			<template id="text">
-				<div>
-					<input type="text" />
-					<label id="answer" class="show answer correct"></label>
+				<h1></h1>
+				<div class="answer-wrapper">
+					<!-- Answers goes here -->
 				</div>
-			</template>
+			</article>
+		</template>
 
-			<template id="result">
-				<article>
-					<button class="submit" id="submit">Submit</button>
-					<div class="show result">
-						<h1>Congratulations!</h1>
-						<p>Total score <span id="score">4/5</span></p>
+		<!-- Template or multiple-option input -->
+		<template id="multiple">
+			<div class="radio-container">
+				<input id="" />
+				<label id="option" for=""> </label>
+				<label id="answer" class="show answer correct" for=""></label>
+			</div>
+		</template>
+
+		<!-- Template for text input -->
+		<template id="text">
+			<div>
+				<input type="text" />
+				<label id="answer" class="show answer correct"></label>
+			</div>
+		</template>
+
+		<!-- Template for dislaying results -->
+		<template id="result">
+			<article>
+				<button class="submit" id="submit">Submit</button>
+				<div class="result show">
+					<h1>Congratulations!</h1>
+					<p>Total score <span id="score">4/5</span></p>
+				</div>
+			</article>
+		</template>
+
+		<!-- Template form for creating a new quiz -->
+		<template id="create-quiz">
+			<article class="create">
+				<form enctype="multipart/form-data">
+
+                    <div class="q-head">
+                        <h3>Create quiz</h3>
+                        <select name="q-quiz" id="q-select">
+                            <option value="new" selected>New</option>
+                        </select>
+                    </div>
+				
+					<div class="control">
+						<h4>Name</h4>
+						<div>
+							<input id="quiz-name" type="text" name="name" placeholder="What is the name of your quiz?" />
+						</div>
 					</div>
-				</article>
-			</template>
 
-			<template id="dashboard-template">
-				<article class="create">
-					<form enctype="multipart/form-data">
-						<h3 id="welcome">Create quiz</h3>
-
-						<div class="control show">
-							<h4>Name</h4>
-							<div>
-								<input id="quiz-name" type="text" name="name" placeholder="What is the name of your quiz?" />
-							</div>
+					<div class="control">
+						<h4>Question</h4>
+						<div>
+							<input id="create" type="text" name="question" placeholder="Enter a new question..." spellcheck="true" />
 						</div>
+					</div>
 
-						<div class="control show">
-							<h4>Question</h4>
-                            <div>
-                                <input id="create" type="text" name="question" placeholder="Enter a new question..." spellcheck="true" />
-                            </div>
+					<div class="control">
+						<h4>Type</h4>
+						<div id="type-container">
+							<input id="radio-text" name="type" type="radio" value="text" />
+							<label for="radio-text"> Text Field </label> <br />
+							<input id="radio-multi" type="radio" name="type" value="multi" checked />
+							<label for="radio-multi"> Multiple Option</label> <br />
 						</div>
+					</div>
 
-						<div class="control show">
-							<h4>Type</h4>
-							<div>
-								<input id="radio-text" name="type" type="radio" value="text"/>
-								<label for="radio-text"> Text Field </label> <br />
-								<input id="radio-multi" type="radio" name="type" value="multi" checked />
-								<label for="radio-multi"> Multiple Option</label> <br />
-							</div>
+					<div class="control hide" id="option-text">
+						<h4>Answer</h4>
+						<div>
+							<input id="answers" type="text" name="answers" placeholder="Enter your answer (-s) here..." /><br />
+							<i><span for="answers">Answers may be separated by comma (elk, moose, reindeer) </span> </i><br />
 						</div>
+					</div>
 
-						<div class="control" id="option-text" >
-							<h4>Answer</h4>
-							<div>
-								<input id="answers" type="text" name="answers" placeholder="Enter your answer (-s) here..." /><br />
-								<i><span for="answers">Answers may be separated by comma (elk, moose, reindeer) </span> </i><br />
-							</div>
-						</div>
-
-						<div class="control show" id="option-multi" >
-							<h4>Options</h4>
-							<div class="multiple-options-container">
-								<span>Enter answers and check if correct</span>
-
-                                <div id="multiple-options">
-                                    <div id="multiple-options-items">
-                                        <template id="options-template">
-                                            <div class="grid-container">
-                                                <input class="c1" type="text" name="" placeholder="Enter your option here..." />
-                                                <div class="c2">
-                                                    <input type="checkbox" name="" />
-                                                </div>
-                                                <button class="c3">🗑</button> 
-                                            </div>
-                                        </template>
-                                    </div>
-                                    <div class="grid-container">
-                                        <button id="plus-button" class="c3">+</button> 
-                                    </div>
-
+					<div class="control" id="option-multi">
+						<h4>Options</h4>
+						<div class="m-container">
+							<span>Enter answers and check if correct</span>
+							<div id="m-options">
+								<div id="m-items">
+									<template id="m-template">
+										<div class="grid-container">
+											<input class="c1" type="text" name="" placeholder="Enter your option here..." />
+											<div class="c2">
+												<input type="checkbox" name="" />
+											</div>
+											<button class="c3">🗑</button>
+										</div>
+									</template>
+								</div>
+								<div class="grid-container">
+									<button id="plus-button" class="c3">+</button>
+								</div>
+                                <div>
+                                    <input id="required" type="checkbox" name="isRequired" />
+                                    <label for="required">is required</label> <br />
                                 </div>
 							</div>
 						</div>
+					</div>
 
-						<div class="control show">
-							<h4>Behaviour</h4>
-							<div>
-								<input id="required" type="checkbox" name="isRequired"/>
-								<label for="required">is required</label> <br />
-
-								<input id="usestrict" type="checkbox" name="useStrict"/>
-								<label for="usestrict">use strict <i>(cat but not cats)</i></label> <br />
-							</div>
+					<div class="control">
+						<h4>Action</h4>
+						<div class="actions">
+                            <input id="delete" type="button" value="Delete" />
+							<input id="back" type="button" value="Back" />
+							<input id="submit" type="submit" value="Submit" />
 						</div>
-                        
-						<div class="control show">
-							<h4>Action</h4>
-							<div>
-                                <input type="reset" value="Reset">
-                                <input type="button" value="Done">
-                                <input type="submit" value="Submit">
-							</div>
-						</div>
-					</form>
-				</article>
-			</template>
-		</main>
-		<script type="module" src="../js/quiz.js"></script>
+					</div>
+				</form>
+			</article>
+		</template>
+		<script type="module" src="../js/quiz-play.js"></script>
 	</body>
 </html>

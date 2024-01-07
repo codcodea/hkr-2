@@ -4,6 +4,8 @@ const LOCAL = FOLDR + "/data/static.json";
 const TOKEN = "https://opentdb.com/api_token.php?command=request";
 const QUIZZ = "https://opentdb.com/api.php?amount=5&difficulty=easy&token=";
 
+const { LocalStore } = "../local-storage.js";
+
 // Fetch local quiz stored as JSON
 const fetchStaticQuiz = async (name) => {
 	const resp = await fetch(LOCAL);
@@ -14,10 +16,9 @@ const fetchStaticQuiz = async (name) => {
 
 // Fetch dynamic quiz from Open Trivia API
 const fetchDynamicQuiz = async () => {
-
-    const date = localStorage.getItem("date");
-    const token = localStorage.getItem("token");
-    const dateInt = parseInt(date, 10); 
+    let date = localStorage.getItem("date");
+    let token = localStorage.getItem("token");
+    let dateInt = parseInt(date, 10); 
 
     if(date) {
         const now = Date.now();
@@ -39,7 +40,11 @@ const fetchDynamicQuiz = async () => {
 
 	const resp = await fetch(QUIZZ + token);
 	const data = await resp.json();
-	if (data.response_code != 0) throw new Error("Invalid response code");
+	if (data.response_code != 0) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("date");
+        return fetchDynamicQuiz();
+    };
 	const quiz = data.results;
 	return quiz;
 };
