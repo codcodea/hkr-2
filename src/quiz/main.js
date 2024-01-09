@@ -14,9 +14,12 @@ async function start() {
 
 	if (param == "create-quiz") {
 		console.log("create quiz");
+        document.title = "Create Quiz";
 		await new CreateQuiz().init();
 	} else {
 		console.log("start quiz");
+        // Capitalize first letter of quiz name
+        document.title = param[0].toUpperCase() + param.slice(1);
 		await new Quiz(param, false).init();
 	}
 

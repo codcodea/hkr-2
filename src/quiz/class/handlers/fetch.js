@@ -1,10 +1,12 @@
 
-const FOLDR = new URL(import.meta.url).href.split("/").slice(0, -2).join("/");
-const LOCAL = "/db/static.json";
+
+import { getEnv } from "../../../env.js";
+const baseUrl = getEnv();
+
+const LOCAL = baseUrl + "/db/static.json";
 const TOKEN = "https://opentdb.com/api_token.php?command=request";
 const QUIZZ = "https://opentdb.com/api.php?amount=5&difficulty=easy&token=";
 
-const { LocalStore } = "../local-storage.js";
 
 // Fetch local quiz stored as JSON
 const fetchStaticQuiz = async (name) => {

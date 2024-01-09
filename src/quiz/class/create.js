@@ -2,6 +2,9 @@ import { getOptions } from "./handlers/dom.js";
 import { Validator } from "./validate.js";
 import { LocalStore } from "./local-storage.js";
 import { Quiz } from "./quiz.js";
+import { getEnv } from "../../env.js";
+
+const baseUrl = getEnv();
 
 class CreateQuiz {
 	constructor() {
@@ -152,7 +155,7 @@ class CreateQuiz {
 	}
 
 	handleBack() {
-		window.location.href = "/src/overview/index.html";
+		window.location.href = baseUrl + "/src/overview/index.html";
 	}
 
 	handleSubmit = (e) => {

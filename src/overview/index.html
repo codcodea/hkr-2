@@ -4,28 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon" />
     <title>Overview</title>
 </head>
 <body>
     <main>
         <section class="toolbar">
-            <h3 id="welcome">Overview</h3>
+            <h3>Overview</h3>
             <h3 id="welcome">Welcome <span id="user"></span>!</h3>
         </section>
         <section class="quiz flex"> 
-            <article id="scandinavia">
+            <article id="scandinavia" class="flex">
                 <div class="texture"></div>
                 <h4>Quiz 1: Scandinavia</h4>
             </article>
-            <!-- <article id="puzzle">
-                <div class="texture"></div>
-                <h4>Quiz 2: Set theory</h4>
-            </article> -->
-            <article id="random-quiz">
-                <div class="texture"></div>
-                <h4>Quiz 4: Random</h4>
-            </article>
-            <article id="create-quiz">
+            <article id="create-quiz" class="flex">
                 <div class="texture"></div>
                 <h4>Create quiz</h4>
             </article>
@@ -33,7 +26,7 @@
     </main>
 
     <template>
-        <article>
+        <article class="flex">
             <div class="texture"></div>
             <h4></h4>
             <p></p>

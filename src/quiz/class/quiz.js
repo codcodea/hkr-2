@@ -2,6 +2,9 @@ import { fetchStaticQuiz, fetchDynamicQuiz } from "./handlers/fetch.js";
 import { getMultiple, getText, onSubmit, getQuestionWrapper } from "./handlers/dom.js";
 import { ScoreTracker } from "./score.js";
 import { LocalStore } from "./local-storage.js";
+import { getEnv } from "../../env.js";
+
+const baseUrl = getEnv();
 
 class Quiz {
 	constructor(param, controls = false) {
@@ -88,7 +91,7 @@ class Quiz {
 	}
 
 	handleSubmit = (e) => {
-		if (e.target.textContent == "Done") return (window.location = "/src/overview/index.html");
+		if (e.target.textContent == "Done") return (window.location = baseUrl + "/src/overview/index.html");
 
         // Show score if no error
 		if (this.score.getResult()) {

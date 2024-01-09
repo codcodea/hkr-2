@@ -10,7 +10,6 @@ main {
 section.quiz {
 	max-width: 700px;
 	margin: 10vh auto 6vh auto;
-    margin-right: 0.8rem;
 }
 
 article {
@@ -63,9 +62,9 @@ article {
 
 	& .answer-symbol {
 		position: absolute;
-		top: 38px;
-		right: 50px;
-		font-size: 30px;
+		top: 8px;
+		right: 30px;
+		font-size: 50px;
 		color: rgb(255, 255, 255);
 	}
 }
@@ -144,9 +143,9 @@ article {
 
 		.answer-symbol {
 			position: absolute;
-			top: 15px;
-			right: 25px;
-			font-size: 30px;
+			top: 6px;
+			right: 24px;
+			font-size: 38px;
 			color: rgb(255, 255, 255);
 		}
 	}

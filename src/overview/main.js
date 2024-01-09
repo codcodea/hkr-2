@@ -22,14 +22,22 @@ const fetchCustomQuiz = async () => {
     const list = LocalStore.getAllNames();  
     const fragment = document.createDocumentFragment();
 
-    console.log(list)
+    let lastIndex = 0;
     
     list.forEach((name, i) => {
+        lastIndex = i;
         const clone = template.cloneNode(true).content;
         clone.querySelector("article").id = name;
         clone.querySelector("h4").innerHTML = `Quiz: ${i + 2}: ${name}`;
         fragment.appendChild(clone);
     });
+
+    const clone = template.cloneNode(true).content;
+    clone.querySelector("article").id = "random-quiz";
+    clone.querySelector("h4").innerHTML = `Quiz: ${lastIndex + 3}: Random`;
+    fragment.appendChild(clone);
+
+
     insertAfter.after(fragment);
 }
 

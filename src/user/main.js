@@ -1,6 +1,12 @@
 import { getUser, setUser } from "./handlers/store.js";
+import { getEnv } from "../env.js";
 
-const overview = "./src/overview/index.html";
+const baseUrl = getEnv();
+
+console.log(baseUrl);
+
+const folder = new URL(import.meta.url);
+console.log(folder);
 
 const initForm = () => {
 	// Add event listeners for delete and submit buttons
@@ -9,15 +15,14 @@ const initForm = () => {
 
 	// Check if user is in local storage
 	const user = getUser();
+	// Show welcome message
 
-    // Show welcome message
-
-    const visitor = document.querySelector("#visitor");
+	const visitor = document.querySelector("#visitor");
 	if (!user) {
-        visitor.innerHTML = "visitor";
-        return;
-    }
-    console.log(user)
+		visitor.innerHTML = "visitor";
+		return;
+	}
+	console.log(user);
 	visitor.innerHTML = user[0];
 
 	// Fill from from local storage
@@ -32,30 +37,30 @@ const initForm = () => {
 	message.style.display = "block";
 
 	// Change the appearance of submit button
-	const submit = document.querySelector("input[type='submit']"); 
+	const submit = document.querySelector("input[type='submit']");
 	submit.value = "Continue";
 };
 
 // Handler for submit button
 function validateForm(e) {
-    e.preventDefault();
+	e.preventDefault();
 	try {
 		const inputs = document.querySelectorAll("input");
 		const outputs = [...inputs].map((input) => input.value.trim());
 		outputs.pop(); // Remove submit button
 		setUser(outputs);
 
-		window.location.href = overview;
+		window.location.href = baseUrl + "/src/overview/index.html";
 	} catch (error) {
 		console.log(error);
 	}
-    return true
+	return true;
 }
 
 // Handler for delete button
 function deleteAccount() {
 	localStorage.removeItem("user");
-    localStorage.removeItem("token");
+	localStorage.removeItem("token");
 	window.location.reload();
 }
 
