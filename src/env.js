@@ -17,7 +17,7 @@ const getEnv = () => {
     console.log(host)
     return host === "localhost" 
         ? config["dev"].baseUrl 
-        :  host === "https://codcodea.github.io/" 
+        :  host === "codcodea.github.io" 
             ? config["prod"].baseUrl
             : config["mobile"].baseUrl;
 }
