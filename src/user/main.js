@@ -1,4 +1,6 @@
-import { getUser, setUser } from "./user.js";
+import { getUser, setUser } from "./handlers/store.js";
+
+const overview = "./src/overview/index.html";
 
 const initForm = () => {
 	// Add event listeners for delete and submit buttons
@@ -7,12 +9,18 @@ const initForm = () => {
 
 	// Check if user is in local storage
 	const user = getUser();
-	if (!user) return;
 
-	// Show welcome message
-	document.querySelector("#visitor").innerHTML = user[0];
+    // Show welcome message
 
-	// Fill from 
+    const visitor = document.querySelector("#visitor");
+	if (!user) {
+        visitor.innerHTML = "visitor";
+        return;
+    }
+    console.log(user)
+	visitor.innerHTML = user[0];
+
+	// Fill from from local storage
 	const inputs = document.querySelectorAll("input");
 	inputs.forEach((input, index) => {
 		input.classList.add("has-user");
@@ -26,9 +34,6 @@ const initForm = () => {
 	// Change the appearance of submit button
 	const submit = document.querySelector("input[type='submit']"); 
 	submit.value = "Continue";
-	submit.style.backgroundColor = "var(--theme-accent-2)";
-	submit.style.color = "white";
-	submit.style.border = "none";
 };
 
 // Handler for submit button
@@ -40,7 +45,7 @@ function validateForm(e) {
 		outputs.pop(); // Remove submit button
 		setUser(outputs);
 
-		window.location.href = "./src/html/overview.html";
+		window.location.href = overview;
 	} catch (error) {
 		console.log(error);
 	}

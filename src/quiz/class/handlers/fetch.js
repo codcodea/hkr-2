@@ -1,6 +1,6 @@
 
 const FOLDR = new URL(import.meta.url).href.split("/").slice(0, -2).join("/");
-const LOCAL = FOLDR + "/data/static.json";
+const LOCAL = "/db/static.json";
 const TOKEN = "https://opentdb.com/api_token.php?command=request";
 const QUIZZ = "https://opentdb.com/api.php?amount=5&difficulty=easy&token=";
 

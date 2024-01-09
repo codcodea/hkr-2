@@ -1,5 +1,5 @@
-import { Quiz } from "./class/play-quiz.js";
-import { CreateQuiz } from "./class/create-quiz.js";
+import { Quiz } from "./class/quiz.js";
+import { CreateQuiz } from "./class/create.js";
 
 /*
     start the quiz

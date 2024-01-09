@@ -1,0 +1,58 @@
+@import "../global.css";
+
+main {
+    height: 100dvh;
+}
+
+section.quiz {
+	padding: 5vh 0;
+    height: 100dvh;
+    overflow: auto;
+}
+
+section.toolbar {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 70%;
+    border: 2px solid var(--gray-8);
+    padding: 2rem;
+    background-color: var(--gray-8);  
+
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+
+    z-index: 2;
+}
+
+article {
+    position: relative;
+	width: 300px;
+    aspect-ratio: 2/1;
+	padding: 1.4rem;
+    margin: 1rem 0;
+
+    transition: scale 0.1s ease-in-out;
+    background: var(--theme-accent-2);
+
+    background-color: var(--white-1);
+    border: 3px solid var(--gray-8);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    
+    &:hover {
+        scale: 1.02;
+    }
+
+    & h4{
+        padding: 0.5rem;
+        border-radius: 8px;
+    }
+
+    & p {
+        padding-left: 0.5rem;
+    }
+}

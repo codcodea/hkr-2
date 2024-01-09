@@ -1,18 +1,12 @@
 import { getOptions } from "./handlers/dom.js";
-import { Validator } from "./validate-form.js";
+import { Validator } from "./validate.js";
 import { LocalStore } from "./local-storage.js";
-import { Quiz } from "./play-quiz.js";
+import { Quiz } from "./quiz.js";
 
 class CreateQuiz {
 	constructor() {
 		this.quizName = null;
 		this.quiz = null;
-
-        // Bind this to event handlers
-		this.handleType = this.handleType.bind(this);
-		this.handleSelect = this.handleSelect.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	init() {
@@ -55,7 +49,7 @@ class CreateQuiz {
 		select.appendChild(options);
 	}
 
-	handleSelect(e) {
+	handleSelect = (e) => {
         // Event handler for the drop down menu
 		const name = this.validator["name"];
 		const selected = e.target.value;
@@ -66,7 +60,7 @@ class CreateQuiz {
 			this.quiz.init();
         };
         const showExisting = () => {
-            this.quiz.remove();
+            this.quiz.clear();
 			this.quizName = null;
 			this.quiz = null;
         };
@@ -76,8 +70,8 @@ class CreateQuiz {
 
         // toggle show delete button
 		selected == "new"
-			? ((name.disabled = false), (name.value = ""))
-			: ((name.disabled = true), (name.value = selected));
+			? ((name.readOnly = false), (name.value = ""))
+			: ((name.readOnly = true), (name.value = selected));
 
 		this.toggleShowDelete();
 	}
@@ -99,16 +93,13 @@ class CreateQuiz {
 		radios.forEach((radio) => radio.addEventListener("change", this.handleType));
 	}
 
-	handleType(e) {
-        // Event handler for the radio buttons
-		const text = this.validator["text"];
-		const multi = this.validator["multi"];
-
-		[text, multi].forEach((e) => e.classList.toggle("hide"));
-
-		// Reset toggled inputs
-		if (e.target.id == "radio-text") this.validator.clearMultiple();
-		else this.validator.clearAnswers();
+    // Event handler for the radio buttons
+	handleType = (e) => {
+        this.validator["text"].classList.toggle("hide");
+        this.validator["multi"].classList.toggle("hide");
+  
+        const clearInput = e.target.id == "radio-text";
+        clearInput ? this.validator.clearMultiple() : this.validator.clearAnswers();
 	}
 
 	addOptions() {
@@ -151,21 +142,22 @@ class CreateQuiz {
 		this.toggleShowDelete();
 	}
 
-	handleDelete(e) {
+	handleDelete = (e) => {
 		e.preventDefault();
 		if (!this.quizName) return;
 		this.store.deleteQuiz(this.quizName);
+        this.validator.clear();
 		this.updateDropdown();
 		this.triggerSelect("new");
 	}
 
 	handleBack() {
-		window.location.href = "overview.html";
+		window.location.href = "/src/overview/index.html";
 	}
 
-	handleSubmit(e) {
+	handleSubmit = (e) => {
 		e.preventDefault();
-		const data = this.validator.inputValidation();
+		const data = this.validator.start();
 		if (!data) return;
 
 		this.store.setQuiz(data);

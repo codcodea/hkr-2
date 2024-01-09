@@ -1,17 +1,14 @@
-import { getUser } from "./user.js";
-import { LocalStore } from "./class/local-storage.js";
+import { getUser } from "../user/handlers/store.js";
+import { LocalStore } from "../quiz/class/local-storage.js";
 
 const toQuiz = (e) => {
-	console.log("toQuiz");
-	window.location.href = `./quiz.html?id=${e.currentTarget.id}`;
+	window.location.href = `../quiz/index.html?id=${e.currentTarget.id}`;
 };
 
 const initQuiz = async () => {
-	console.log("initQuiz");
-
 	const user = getUser();
 	const welcome = document.querySelector("#user");
-	// welcome.innerHTML = user[0];
+	welcome.innerHTML = user[0];
 
     await fetchCustomQuiz();
 
@@ -21,16 +18,19 @@ const initQuiz = async () => {
 
 const fetchCustomQuiz = async () => {
     const template = document.querySelector("template");
+    const insertAfter = document.querySelector("section.quiz article");
     const list = LocalStore.getAllNames();  
+    const fragment = document.createDocumentFragment();
+
+    console.log(list)
     
-    list.forEach((name) => {
+    list.forEach((name, i) => {
         const clone = template.cloneNode(true).content;
         clone.querySelector("article").id = name;
-        clone.querySelector("h4").innerHTML = name;
-        clone.querySelector("p").innerText = "Category: Test";
-
-        document.querySelector(".quiz").append(clone);
+        clone.querySelector("h4").innerHTML = `Quiz: ${i + 2}: ${name}`;
+        fragment.appendChild(clone);
     });
+    insertAfter.after(fragment);
 }
 
 

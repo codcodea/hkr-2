@@ -1,7 +1,7 @@
 {
     "scandinavia": [
         {
-            "id": "q1",
+            "id": "1",
             "sort": 1,
             "type": "multiple",
             "isRadio": true,
@@ -12,10 +12,11 @@
                 "Helsinki",
                 "Copenhagen",
                 "Reykjavik"
-            ]
+            ],
+            "isRequired": true
         },
         {
-            "id": "q2",
+            "id": "2",
             "sort": 2,
             "type": "multiple",
             "isRadio": false,
@@ -24,10 +25,11 @@
             "incorrect_answers": [
                 "Reykjavik",
                 "Helsinki"
-            ]
+            ],
+            "isRequired": false
         },
         {
-            "id": "q3",
+            "id": "3",
             "sort": 3,
             "type": "multiple",
             "isRadio": true,
@@ -38,19 +40,21 @@
                 "Carl XIV Gustaf",
                 "Carl XVII Gustaf",
                 "Carl II Alfred"
-            ]
+            ],
+            "isRequired": false
         },
         {
-            "id": "q4",
+            "id": "4",
             "sort": 4,
             "type": "text",
             "isRadio": false,
             "question": "What animal is the king of the forest?",
             "correct_answer": ["moose", "elk"],
-            "incorrect_answers": []
+            "incorrect_answers": [],
+            "isRequired": false
         },
         {
-            "id": "q5",
+            "id": "5",
             "sort": 5,
             "type": "multiple",
             "isRadio": true,
@@ -60,7 +64,8 @@
                 "A Viking ship",
                 "A mountain",
                 "A museum"
-            ]
+            ], 
+            "isRequired": true
         }
     ],
     "puzzle": [
