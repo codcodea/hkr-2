@@ -42,6 +42,7 @@ class Quiz {
 
 	async initStaticQuiz() {
 		this.quiz = await fetchStaticQuiz(this.param);
+        console.log(this.param)
 	}
 
 	async initDynamicQuiz() {

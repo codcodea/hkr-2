@@ -155,7 +155,8 @@ class CreateQuiz {
 	}
 
 	handleBack() {
-		window.location.href = baseUrl + "/src/overview/index.html";
+        console.log(baseUrl)
+		window.location.assign(baseUrl + "/src/overview/index.html");
 	}
 
 	handleSubmit = (e) => {
