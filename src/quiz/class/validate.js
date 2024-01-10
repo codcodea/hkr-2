@@ -1,3 +1,7 @@
+/* 
+    This class is responsible for all custom validation of the Create Quiz form.
+*/
+
 class Validator {
 	constructor(form) {
 		this.form = form;
@@ -28,12 +32,9 @@ class Validator {
 	}
 
 	clean(input) {
-
 		/*
-            This method clean the data from various pars of the form:
-            - Trim off whitespaces
-            - Structures to an output object that is easier to work with
-
+            This method cleans and structures the data
+  
             Output object:
             {
                 name: string,
@@ -45,10 +46,10 @@ class Validator {
             }
         */
 
-		// Trim whitespaces
+		// Trim off whitespaces
 		const a = Object.fromEntries(Object.entries(input).map(([k, v]) => [k, v.trim()]));
 
-		// Init output
+		// Init output object
 		let output = {
 			name: a.name,
 			question: a.question,
@@ -66,7 +67,7 @@ class Validator {
 			return output;
 		}
 
-		// Structure the multiple-choice inputs 
+		// Structure the multiple-choice inputs
 		const options = new Map();
 		const correct_answer = [];
 		const incorrect_answers = [];
@@ -94,6 +95,7 @@ class Validator {
 		return output;
 	}
 
+    // Validate each key against rules
 	validate(key, value, isText) {
 		// Validation rules
 		const validation = {
@@ -119,23 +121,23 @@ class Validator {
 		}
 	}
 
-    // Evaluate errors and show them in the form if any
+	// Evaluate errors and show them in the form, if any
 	handleError(errors, isText) {
 		if (errors.length == 0) return false;
 
-        // Show only the first error
+		// Show only the first error
 		const [key, message] = errors[0];
 
-        // Find the error element
+		// Find the error element
 		let errorElement;
 
-        console.log(key, message)
+		console.log(key, message);
 
 		switch (key) {
 			case "correct_answer":
 				if (isText) errorElement = this.get("#answers");
 				else errorElement = document.querySelector(".cbox input[type='checkbox']");
-                console.log(errorElement);
+				console.log(errorElement);
 				break;
 			case "incorrect_answers":
 				const elems = this.getAll(`input[placeholder="Enter your option here..."]`);
@@ -160,14 +162,13 @@ class Validator {
 		return true;
 	}
 
-    // Show custom error message in the form
+	// Show custom error message in the form
 	showError(element, message) {
 		element.setCustomValidity(message);
 		element.reportValidity();
 	}
 
 	// Utility methods
-
 	clear() {
 		this.clearAnswers();
 		this.clearMultiple();
@@ -204,14 +205,13 @@ class Validator {
 		this.firstCheckbox = this.get(".cbox input[type=checkbox]");
 	}
 
-    get(selector) {
+	get(selector) {
 		return this.form.querySelector(selector);
 	}
 
 	getAll(selector) {
 		return this.form.querySelectorAll(selector);
 	}
-
 }
 
 export { Validator };

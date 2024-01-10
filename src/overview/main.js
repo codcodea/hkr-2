@@ -1,10 +1,16 @@
 import { getUser } from "../user/handlers/store.js";
 import { LocalStore } from "../quiz/class/local-storage.js";
 
+/*
+    These methods are used to create the overview page
+    - get the user from local storage
+    - create the page using templates
+    - add event listeners to the cards
+*/
+
 import { getEnv } from "../env.js";
 const baseUrl = getEnv();
 
-// Initialize the overview page
 const initQuiz = () => {
     // Welcome user
 	const user = getUser();
@@ -12,6 +18,8 @@ const initQuiz = () => {
 
     user ? welcome.innerHTML = "Welcome " + user[0] + "!" : "Welcome!";
     welcome.style.whiteSpace = "wrap";
+
+    // Create the page
     createPage();
 
     // Add event listeners  
@@ -21,8 +29,7 @@ const initQuiz = () => {
 
 // Handler for the click events
 const toQuiz = (e) => {
-    const page = e.currentTarget.id;
-    console.log(page);  
+    const page = e.currentTarget.id; 
     if (page == "user-page") window.location.href = baseUrl;
     else window.location.href = baseUrl + `/src/quiz/index.html?id=${page}`;
 };

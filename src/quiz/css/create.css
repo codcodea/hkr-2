@@ -1,3 +1,6 @@
+
+/* Styles for the Create Quiz form */
+
 article.create {
     & .inner-wrapper {
         padding: 1em 0;
@@ -213,4 +216,5 @@ select {
 }
 
 @media (681px <= width <= 1124px) {
+    /* None */
 }

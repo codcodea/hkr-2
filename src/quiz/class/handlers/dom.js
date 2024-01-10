@@ -1,3 +1,7 @@
+/* 
+    These functions are reponsible for converting HTML templates to DOM nodes
+*/
+
 // Populate the question-wrapper template
 const getQuestionWrapper = (question, index, hasControls, handler) => {
 	const node = document.getElementById("question").cloneNode(true).content;
@@ -31,7 +35,7 @@ const getMultiple = (question, index, node, handler) => {
 		const isCorrect = question.correct_answer.includes(a);
 
 		const domId = "id-" + index + "-" + i;
-        const domGroup = "group-" + index;
+		const domGroup = "group-" + index;
 
 		const clone = node.cloneNode(true);
 		const input = clone.querySelector("input");
@@ -74,6 +78,7 @@ const getText = (question, index, node, handler) => {
 	return clone;
 };
 
+// Populate the select drop down menu
 const getOptions = (list) => {
 	const fragment = document.createDocumentFragment();
 

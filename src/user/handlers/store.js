@@ -1,3 +1,8 @@
+
+/* 
+    This file contains functions to store and retrieve user data from local storage.
+*/
+
 const isSupported = () => typeof Storage !== "undefined";
 const isUserInLocalStorage = () => localStorage.getItem("user") !== null;
 
@@ -14,7 +19,6 @@ const setUser = (user) => {
 		localStorage.setItem("user", json);
 		return true;
 	}
-
 	return false;
 };
 

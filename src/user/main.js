@@ -1,26 +1,31 @@
 import { getUser, setUser, deleteUser } from "./handlers/store.js";
 import { getEnv } from "../env.js";
-
 const baseUrl = getEnv();
 
-const initForm = () => {
+/* 
+    This file contains functions to create the user page.
+    - get the user from local storage
+    - add event listeners to the buttons
+    - validate the form using built-in methods
+*/
 
-    // Add event listeners
-    document.querySelector("button").addEventListener("click", deleteAccount);
+const initForm = () => {
+	// Add event listeners
+	document.querySelector("button").addEventListener("click", deleteAccount);
 	document.querySelector("form").addEventListener("submit", validateForm);
 
 	// Get user
 	const user = getUser();
-	
-    // Show welcome message
+
+	// Show welcome message
 	const visitor = document.querySelector("#visitor");
 	if (!user) {
 		visitor.innerHTML = "Welcome visitor!";
 		return;
 	}
-	visitor.innerHTML = "Welcome " + user[0] +"!";
+	visitor.innerHTML = "Welcome " + user[0] + "!";
 
-	// Pre-fill form
+	// Pre-fill form, if user exists
 	const inputs = document.querySelectorAll("input");
 	inputs.forEach((input, index) => {
 		input.classList.add("has-user");
@@ -50,14 +55,14 @@ const validateForm = (e) => {
 		console.log(error);
 	}
 	return true;
-}
+};
 
 // Handler for delete button
 const deleteAccount = (e) => {
-    e.preventDefault();
-	if(deleteUser()){
-        window.location.href = baseUrl;
-    }
-}
+	e.preventDefault();
+	if (deleteUser()) {
+		window.location.href = baseUrl;
+	}
+};
 
 document.addEventListener("DOMContentLoaded", initForm);

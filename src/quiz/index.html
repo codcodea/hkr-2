@@ -11,7 +11,7 @@
 		<main>
 			<section id="quiz" class="quiz">
 				<div id="root">
-					<!-- Create Quiz Form  -->
+					<!-- Create Quiz form goes here  -->
 				</div>
 				<div id="questions">
 					<!-- Questions -->
@@ -20,7 +20,8 @@
 		</main>
 
 		<!-- Templates -->
-		<!-- A wrapper container each question -->
+
+		<!-- A wrapper for each question -->
 		<template id="question">
 			<article>
 				<div class="show answer-symbol"></div>
@@ -67,7 +68,7 @@
 				<div>
 					<button class="submit" id="submit">Submit</button>
 				</div>
-                <div class="err flex">
+				<div class="err flex">
 					<p>Please answer all questions before submitting</p>
 				</div>
 				<div class="res flex">
@@ -81,7 +82,6 @@
 		<template id="create-quiz">
 			<article class="create">
 				<form enctype="multipart/form-data">
-
 					<div class="q-head">
 						<h2>Create quiz</h2>
 						<select name="q-quiz" id="q-select">
@@ -160,7 +160,6 @@
 							<input id="submit" type="submit" value="Submit" />
 						</div>
 					</div>
-
 				</form>
 			</article>
 		</template>
