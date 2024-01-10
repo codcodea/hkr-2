@@ -53,6 +53,9 @@ p {
     h1 {
         padding: 0.5rem;
     }
+    h2 {
+        padding: 0.5rem 0.7rem;
+    }
     h3 {
         padding: 1.5rem;
     }
