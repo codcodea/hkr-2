@@ -1,8 +1,12 @@
+/* 
+    This class is responsible for Local Storage interaction.
+*/
+
 class LocalStore {
 	current = {}
 	constructor() {}
 
-    // Returns a list of all quiz names in local storage
+    // Return a list of all quiz-names 
 	static getAllNames() {
 		const list = [];
 		const reserved = ["token", "date", "user"];
@@ -13,12 +17,13 @@ class LocalStore {
 		return list;
 	}
 
-    // Return a quiz from local storage
+    // Return a quiz
 	getQuiz(key) {
 		const data = localStorage.getItem(key);
 		return JSON.parse(data);
 	}
 
+    // Set or update a quiz
 	setQuiz(data) {
 		data = { ...data };
 		const key = data.name.trim();
@@ -32,6 +37,7 @@ class LocalStore {
 		}
 	}
 
+    // Add 
 	addToQuiz(key, current, data) {
 		const len = current.length;
 		const next = len;
@@ -40,6 +46,7 @@ class LocalStore {
 		localStorage.setItem(key, JSON.stringify(update));
 	}
 
+    // Delete a question
 	deleteQuestion(key, index) {
 		console.log(key, index);
 		const data = localStorage.getItem(key);
@@ -49,17 +56,19 @@ class LocalStore {
 		return update;
 	}
 
+    // Delete a quiz
     deleteQuiz(index) {
 		const key = localStorage.key(index);
         localStorage.removeItem(key);
 	}
 
+    // Sorts a quiz when using the up/down buttons
     sortQuestion(key, index, direction) {
         const data = this.getQuiz(key);
         const lastIndex = data.length - 1;
     
         index = Number(index);
-    
+
         // No sort needed
         const onEdge = (index === 0 && direction === "up") || (index === lastIndex && direction === "down");
         console.log(onEdge) 

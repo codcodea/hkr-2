@@ -1,12 +1,13 @@
+@import "typography.css";
+
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: monospace;
 }
 
 :root {
 	--theme-dark: #100D0E;
-	--theme-accent-1: var(--gray-4);
+	--theme-accent-1: var(--gray-8);
 	--theme-accent-2: #ea4a89;
 
 	--linear-gradient-1: linear-gradient(180deg, var(--theme-accent) 0%, var(--theme-accent-2) 100%);

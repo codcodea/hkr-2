@@ -3,12 +3,15 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="./public/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="./src/user/styles.css"/>
+		<link rel="icon" href="./public/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="https://use.typekit.net/kyd1imk.css" />
+		<link rel="stylesheet" href="./src/user/styles.css" />
+        <link rel="preload" href="/public/image_0.jpg" as="image" />
 		<title>User Page</title>
 	</head>
 	<body>
 		<main class="flex">
+			<div id="bg"></div>
 			<section class="contact flex">
 				<article class="wrapper">
 					<form>
@@ -17,6 +20,7 @@
 
 							<label for="first-name">First Name: </label>
 							<input
+								if="first-name"
 								class="name"
 								autocomplete="given-name"
 								name="first-name"
@@ -27,6 +31,7 @@
 
 							<label for="last-name">Last Name: </label>
 							<input
+								id="last-name"
 								type="text"
 								autocomplete="family-name"
 								class="name"
@@ -38,6 +43,7 @@
 
 							<label for="email">E-mail: </label>
 							<input
+								id="email"
 								type="email"
 								autocomplete="email"
 								class="email"
@@ -47,13 +53,11 @@
 								pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
 							/>
 							<input class="submit" type="submit" value="Send" />
+							<p id="welcome">
+								Click Continue to proceed with your quizzes, or <button>Delete</button> to delete your account.
+							</p>
 						</fieldset>
 					</form>
-
-					<span id="welcome">
-						<p>Click Continue to proceed with your quizzes,</p>
-						<p>or <button>Delete</button> to delete your account</p>
-					</span>
 				</article>
 			</section>
 		</main>

@@ -4,8 +4,7 @@ import { getEnv } from "../../../env.js";
 const baseUrl = getEnv();
 
 const LOCAL = baseUrl + "/db/static.json";
-const TOKEN = "https://opentdb.com/api_token.php?command=request";
-const QUIZZ = "https://opentdb.com/api.php?amount=5&difficulty=easy&token=";
+const QUIZZ = "https://opentdb.com/api.php?amount=5&category=9&difficulty=easy";
 
 
 // Fetch local quiz stored as JSON
@@ -18,37 +17,15 @@ const fetchStaticQuiz = async (name) => {
 
 // Fetch dynamic quiz from Open Trivia API
 const fetchDynamicQuiz = async () => {
-    let date = localStorage.getItem("date");
-    let token = localStorage.getItem("token");
-    let dateInt = parseInt(date, 10); 
-
-    if(date) {
-        const now = Date.now();
-        const diff = now - dateInt;
-        const day = 1000 * 60 * 60 * 24; // 24 hours in ms
-        if (diff > day) {
-            localStorage.removeItem("token");
-            localStorage.removeItem("date");
-        }
-    }
-
-	if (!token) {
-		const resp = await fetch(TOKEN);
-		const data = await resp.json();
-        token = data.token;
-		localStorage.setItem("token", token);
-        localStorage.setItem("date", Date.now());
-	}
-
-	const resp = await fetch(QUIZZ + token);
+	const resp = await fetch(QUIZZ);
 	const data = await resp.json();
-	if (data.response_code != 0) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("date");
-        return fetchDynamicQuiz();
+    console.log(resp.statusText);
+	if (resp.status !== 200) {
+        if(resp.status == 429) return [false, "\nToo many requests. Please try again later."];
+        else return [false, resp.statusText];
     };
 	const quiz = data.results;
-	return quiz;
+	return [true, quiz];
 };
 
 const fetchCustomQuiz = async (name) => {

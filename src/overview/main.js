@@ -1,45 +1,69 @@
 import { getUser } from "../user/handlers/store.js";
 import { LocalStore } from "../quiz/class/local-storage.js";
 
-const toQuiz = (e) => {
-	window.location.href = `../quiz/index.html?id=${e.currentTarget.id}`;
-};
+import { getEnv } from "../env.js";
+const baseUrl = getEnv();
 
-const initQuiz = async () => {
+// Initialize the overview page
+const initQuiz = () => {
+    // Welcome user
 	const user = getUser();
 	const welcome = document.querySelector("#user");
 	welcome.innerHTML = user[0];
+    
+    createPage();
 
-    await fetchCustomQuiz();
-
+    // Add event listeners  
 	const quizzes = document.querySelector(".quiz").children;
 	[...quizzes].forEach((quiz) => quiz.addEventListener("click", toQuiz));
 };
 
-const fetchCustomQuiz = async () => {
+// Handler for the click events
+const toQuiz = (e) => {
+    const page = e.currentTarget.id;
+    console.log(page);  
+    if (page == "user-page") window.location.href = baseUrl;
+    else window.location.href = baseUrl + `/src/quiz/index.html?id=${page}`;
+};
+
+// Create the page from a template
+const createPage = async () => {
     const template = document.querySelector("template");
-    const insertAfter = document.querySelector("section.quiz article");
+    const root = document.querySelector("section.quiz");
+
+    // Get all quiz-names from local storage
     const list = LocalStore.getAllNames();  
-    const fragment = document.createDocumentFragment();
+
+    // Append two mandatory cards
+    list.unshift("scandinavia");
+    list.push("random-quiz")
 
     let lastIndex = 0;
+    const fragment = document.createDocumentFragment();
     
     list.forEach((name, i) => {
         lastIndex = i;
-        const clone = template.cloneNode(true).content;
-        clone.querySelector("article").id = name;
-        clone.querySelector("h4").innerHTML = `Quiz: ${i + 2}: ${name}`;
-        fragment.appendChild(clone);
+        const n = getCard(template, name, i);
+        fragment.appendChild(n);
     });
 
-    const clone = template.cloneNode(true).content;
-    clone.querySelector("article").id = "random-quiz";
-    clone.querySelector("h4").innerHTML = `Quiz: ${lastIndex + 3}: Random`;
-    fragment.appendChild(clone);
+    const next = getCard(template, "create-quiz", lastIndex + 1);
+    fragment.appendChild(next);
 
-
-    insertAfter.after(fragment);
+    root.appendChild(fragment);
 }
 
+// Construct a card for each quiz
+const getCard = (template, name, i) => {
+    const clone = template.cloneNode(true).content;
+    const article = clone.querySelector("article");
+    article.id = name;
+    const file = baseUrl + '/public/' + 'image_' + Number(i + 1) + '.jpg'; 
+
+    article.style.backgroundImage = `url(${file})`;
+    name != "create-quiz" ? clone.querySelector("h4").innerHTML = `Quiz: ${i + 1}` : null;
+    clone.querySelector("p").innerHTML = name[0].toUpperCase() + name.slice(1);
+    return clone;
+};
 
 document.addEventListener("DOMContentLoaded", initQuiz);

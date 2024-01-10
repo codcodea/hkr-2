@@ -30,14 +30,15 @@ const getMultiple = (question, index, node, handler) => {
 	answers.forEach((a, i) => {
 		const isCorrect = question.correct_answer.includes(a);
 
-		const domId = "id-" + i;
+		const domId = "id-" + index + "-" + i;
+        const domGroup = "group-" + index;
 
 		const clone = node.cloneNode(true);
 		const input = clone.querySelector("input");
 		input.type = question.isRadio ? "radio" : "checkbox";
 		input.value = a;
 		input.id = domId;
-		input.name = "group-" + index;
+		input.name = domGroup;
 		input.dataset.question = index;
 		input.onchange = handler;
 

@@ -1,74 +1,102 @@
 @import "../global.css";
 
 main {
-    min-height: 130dvh;
+	min-height: 130dvh;
 }
 
 section.quiz {
 	padding: 10vh 0;
-    min-height: 100dvh;
-    overflow: auto;
-}
+	min-height: 100dvh;
+	overflow: auto;
 
-section.toolbar {
-    position: fixed;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 66%;
-    border-left: 6px solid var(--theme-accent-2);
-    border-right: 6px solid var(--theme-accent-2);
-    padding: 2rem;
-    background-color: var(--gray-8);  
-
-    display: flex;
-    justify-content: space-between;
-    align-items: space-between;
-    opacity: 0.8;
-    z-index: 2;
+    & h3, & span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-style: italic;
+        color: var(--gray-2);
+    }
 }
 
 article {
     position: relative;
 	width: 300px;
-    aspect-ratio: 2/1;
+	aspect-ratio: 2/1;
 	padding: 1.4rem;
-    margin: 1rem 0;
+	margin: 1rem 0;
 
-    transition: scale 0.08s ease-in-out, border-left 0.1s ease-in-out, border-radius 0.2s ease-in-out;
-  
-    background-color: var(--white-1);
-    border: 3px solid var(--gray-8);
-    border-radius: 8px;
-    box-shadow: var(--shadow);
+	transition: scale 0.08s ease-in-out, border-left 0.1s ease-in-out,
+        border-right 0.1s ease-in-out, box-shadow 0.1s ease-in-out, 
+        border-radius 0.1s ease-in-out;
 
-    @media (hover: hover) {
+	/* background-color: var(--white-1); */
+	border: 3px solid var(--gray-8);
+	border-radius: 8px;
+	box-shadow: var(--shadow);
+
+    background-image: url();
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+
+    & div {
+        position: absolute;
+        width: 250px;
+        padding: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        outline: none;
+
+        pointer-events: auto; 
+        transition: background-color 0.1s ease-in-out;
         &:hover {
-            cursor: pointer;
-            border-left: 3px solid var(--theme-accent-2);
-            border-right: 3px solid var(--theme-accent-2);
-            border-radius: 50px;
-            box-shadow: var(--shadow-mobile);
+            background-color: rgba(255, 255, 255, 0.9);
         }
     }
+
+    & h4 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--gray-0);
+    }
+
+    & p {
+        font-size: 1.3rem;
+        font-weight: 400;
+        color: var(--gray-1);
+    }
+
+    pointer-events: none; 
+
+	@media (hover: hover) {
+		&:hover {
+			cursor: pointer;       
+			border-left: 3px solid var(--theme-accent-2);
+			border-right: 3px solid var(--theme-accent-2);
+			border-radius: 18px;
+			box-shadow: var(--shadow-mobile);
+		}
+	}
 }
 
 @media (width <= 680px) {
-
-    section.quiz {
-        padding: 15vh 0;
-    }
+	section.quiz {
+		padding: 15vh 0;
+	}
 
 	section.toolbar {
-        top: 5%;
-        width: 95%;
-        opacity: 0.8;
-    }
+		top: 5%;
+		width: 95%;
+		opacity: 0.8;
+	}
 }
 
-@media (681px <= width <= 1124px) {
-	
-}
+@media (681px <= width <= 1124px) {}
+
 
 

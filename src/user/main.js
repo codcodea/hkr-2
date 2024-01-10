@@ -1,48 +1,45 @@
-import { getUser, setUser } from "./handlers/store.js";
+import { getUser, setUser, deleteUser } from "./handlers/store.js";
 import { getEnv } from "../env.js";
 
 const baseUrl = getEnv();
 
-console.log(baseUrl);
-
-const folder = new URL(import.meta.url);
-console.log(folder);
-
 const initForm = () => {
-	// Add event listeners for delete and submit buttons
-	document.querySelector("button").addEventListener("click", deleteAccount);
+
+    // Add event listeners
+    document.querySelector("button").addEventListener("click", deleteAccount);
 	document.querySelector("form").addEventListener("submit", validateForm);
 
-	// Check if user is in local storage
+	// Get user
 	const user = getUser();
-	// Show welcome message
-
+	
+    // Show welcome message
 	const visitor = document.querySelector("#visitor");
 	if (!user) {
 		visitor.innerHTML = "visitor";
 		return;
 	}
-	console.log(user);
 	visitor.innerHTML = user[0];
 
-	// Fill from from local storage
+	// Pre-fill form
 	const inputs = document.querySelectorAll("input");
 	inputs.forEach((input, index) => {
 		input.classList.add("has-user");
 		input.value = user[index];
 	});
 
-	// Show message box
+	// Show info box below form
 	const message = document.querySelector("#welcome");
 	message.style.display = "block";
 
 	// Change the appearance of submit button
 	const submit = document.querySelector("input[type='submit']");
 	submit.value = "Continue";
+
+
 };
 
 // Handler for submit button
-function validateForm(e) {
+const validateForm = (e) => {
 	e.preventDefault();
 	try {
 		const inputs = document.querySelectorAll("input");
@@ -58,10 +55,12 @@ function validateForm(e) {
 }
 
 // Handler for delete button
-function deleteAccount() {
-	localStorage.removeItem("user");
-	localStorage.removeItem("token");
-	window.location.reload();
+const deleteAccount = (e) => {
+    e.preventDefault();
+    console.log("Delete account")
+	if(deleteUser()){
+        window.location.href = baseUrl;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", initForm);

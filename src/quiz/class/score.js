@@ -1,9 +1,15 @@
+
+/* 
+    This class is responsible for calculating the score (state) of a quiz.
+*/
+
 class ScoreTracker {
 	state = {};
 	questions = null;
 
 	constructor() {}
 
+    // Initialize the state object by creating a tracker for each question
 	init(questions, root) {
 		for (const [key, value] of Object.entries(questions)) {
 			this.state[Number(key)] = this.getTracker(value);
@@ -12,8 +18,8 @@ class ScoreTracker {
 		this.getDomRefs();
 	}
 
+    // Returns a tracker object
 	getTracker(value) {
-		// Tracker is a state object for each question
 		return {
 			question: value.question,
 			selected: new Set(),
@@ -25,6 +31,7 @@ class ScoreTracker {
 		};
 	}
 
+    // Event handler for the submit button
 	handleSubmit = (e) => {
 		let { type, value, dataset } = e.target;
 		let index = Number(dataset.question);

@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="../../public/favicon.ico" type="image/x-icon" />
-    <title>Overview</title>
-</head>
-<body>
-    <main>
-        <section class="toolbar">
-            <h3>Overview</h3>
-            <h3 id="welcome">Welcome <span id="user"></span>!</h3>
-        </section>
-        <section class="quiz flex"> 
-            <article id="scandinavia" class="flex">
-                <div class="texture"></div>
-                <h4>Quiz 1: Scandinavia</h4>
-            </article>
-            <article id="create-quiz" class="flex">
-                <div class="texture"></div>
-                <h4>Create quiz</h4>
-            </article>
-        </section>
-    </main>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="../../public/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="https://use.typekit.net/kyd1imk.css" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Overview</title>
+	</head>
+	<body>
+		<main>
+			<section class="quiz flex">
+				<article id="user-page" class="flex">
+					<div>
+						<h3>Welcome <span id="user"></span>!</h3>
+					</div>
+				</article>
+				<!-- Quizzes goes here -->
+			</section>
+		</main>
 
-    <template>
-        <article class="flex">
-            <div class="texture"></div>
-            <h4></h4>
-            <p></p>
-        </article>
-    </template>
+		<!-- Templates -->
+		<template>
+			<article class="flex">
+				<div>
+					<h4></h4>
+					<p></p>
+				</div>
+			</article>
+		</template>
 
-    <script type="module" src="main.js"></script>
-</body>
+		<script type="module" src="main.js"></script>
+	</body>
 </html>

@@ -6,6 +6,10 @@ import { getEnv } from "../../env.js";
 
 const baseUrl = getEnv();
 
+/* 
+    This class is responsible for "Create Quiz" from.
+*/
+
 class CreateQuiz {
 	constructor() {
 		this.quizName = null;
@@ -13,7 +17,7 @@ class CreateQuiz {
 	}
 
 	init() {
-        // Get the root element for the create quiz form
+        // Get the root element 
 		const root = document.querySelector("#root");
 		this.node = document.querySelector("#create-quiz").cloneNode(true).content;
 
@@ -29,6 +33,7 @@ class CreateQuiz {
 		root.appendChild(this.node);
 	}
 
+    // Render the from controls
 	addControls() {
 		this.addDropdown();
 		this.addName();
@@ -37,8 +42,8 @@ class CreateQuiz {
 		this.addActions();
 	}
 
+    // Populates the drop down menu 
 	addDropdown() {
-        // Populates the drop down menu 
 		this.validator["select"].addEventListener("change", this.handleSelect);
 		this.updateDropdown();
 	}
@@ -52,8 +57,8 @@ class CreateQuiz {
 		select.appendChild(options);
 	}
 
+    // Event handler for the drop down menu
 	handleSelect = (e) => {
-        // Event handler for the drop down menu
 		const name = this.validator["name"];
 		const selected = e.target.value;
 
@@ -62,6 +67,7 @@ class CreateQuiz {
 			this.quiz = new Quiz(this.quizName, true);
 			this.quiz.init();
         };
+
         const showExisting = () => {
             this.quiz.clear();
 			this.quizName = null;
@@ -71,26 +77,27 @@ class CreateQuiz {
 		if (selected !== "new") createNew() 
         else showExisting()
 
-        // toggle show delete button
-		selected == "new"
+		selected == "new" // toggles name field for new quizzes
 			? ((name.readOnly = false), (name.value = ""))
 			: ((name.readOnly = true), (name.value = selected));
 
 		this.toggleShowDelete();
 	}
 
+    // Programmatically triggers the drop down menu
 	triggerSelect(value) {
-        // Programmatically triggers the drop down menu
 		const select = this.validator["select"];
 		select.value = value;
 		const changeEvent = new Event("change", { bubbles: true });
 		select.dispatchEvent(changeEvent);
 	}
 
+    // Populates the name field
 	addName() {
 		if (this.quizName) this.validator["name"].value = this.quizName;
 	}
 
+    // Populates the radio buttons
 	addType() {
 		const radios = this.validator["radios"];
 		radios.forEach((radio) => radio.addEventListener("change", this.handleType));
@@ -105,34 +112,36 @@ class CreateQuiz {
         clearInput ? this.validator.clearMultiple() : this.validator.clearAnswers();
 	}
 
+    // Populates the options fields
 	addOptions() {
-		const t = this.validator["multiTemplate"];
+		const templ = this.validator["multiTemplate"];
 		const container = this.validator["multiItems"];
 		const button = this.validator["plusButton"];
 
+        // Add a new options 
 		const addOption = () => {
-			const clone = t.cloneNode(true).content;
+			const clone = templ.cloneNode(true).content;
 			const id = this.randomId();
 
-			// add dynamic id:s for tracking
 			const names = clone.querySelectorAll("input[name]");
-			names.forEach((n, i) => {
+			names.forEach((n, i) => { // dynamic id tracking
 				if (i == 0) n.name = `option-${id}`;
 				else n.name = `option-${id}-on`;
 			});
 
-			// trash symbol
 			const trash = clone.querySelectorAll("button");
 			trash.forEach((b) => b.addEventListener("click", (e) => e.target.parentNode.remove()));
 			container.appendChild(clone);
 		};
 
+        // Event handler for the add option button
 		const onClick = (e) => (e.preventDefault(), addOption());
 
 		[1, 2, 3].forEach(addOption); // add 3 options by default
 		button.addEventListener("click", onClick); // add another option on click
 	}
 
+    // Populates the action buttons
 	addActions() {
 		const del = this.validator["delete"];
 		const back = this.validator["back"];
@@ -145,6 +154,7 @@ class CreateQuiz {
 		this.toggleShowDelete();
 	}
 
+    // Event handler for the delete button
 	handleDelete = (e) => {
 		e.preventDefault();
 		if (!this.quizName) return;
@@ -154,11 +164,12 @@ class CreateQuiz {
 		this.triggerSelect("new");
 	}
 
+    // Event handler for the back button
 	handleBack() {
-        console.log(baseUrl)
 		window.location.assign(baseUrl + "/src/overview/index.html");
 	}
 
+    // Event handler for the submit button
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const data = this.validator.start();
