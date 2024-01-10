@@ -55,8 +55,10 @@ class Quiz {
 	async initDynamicQuiz() {
 		const [ok, message] = await fetchDynamicQuiz(this.param);
         if (ok) this.quiz = message;
-        else alert(message);
-        
+        else {
+            const isConfirmed = window.confirm(message);
+            window.location.href = baseUrl + "/src/overview/index.html";
+        }
 	}
 
 	initCustomQuiz() {

@@ -20,10 +20,9 @@ const setUser = (user) => {
 
 const deleteUser = () => {
     if (isSupported()) {
-        localStorage.removeItem("user");
+        localStorage.clear();
         return true;
     }
-
     return false;
 };  
 

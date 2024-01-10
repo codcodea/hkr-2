@@ -9,8 +9,9 @@ const initQuiz = () => {
     // Welcome user
 	const user = getUser();
 	const welcome = document.querySelector("#user");
-	welcome.innerHTML = user[0];
-    
+
+    user ? welcome.innerHTML = "Welcome " + user[0] + "!" : "Welcome!";
+    welcome.style.whiteSpace = "wrap";
     createPage();
 
     // Add event listeners  
@@ -58,7 +59,7 @@ const getCard = (template, name, i) => {
     const clone = template.cloneNode(true).content;
     const article = clone.querySelector("article");
     article.id = name;
-    const file = baseUrl + '/public/' + 'image_' + Number(i + 1) + '.jpg'; 
+    const file = baseUrl + '/public/' + 'image_s_' + Number(i + 1) + '.jpg'; 
 
     article.style.backgroundImage = `url(${file})`;
     name != "create-quiz" ? clone.querySelector("h4").innerHTML = `Quiz: ${i + 1}` : null;

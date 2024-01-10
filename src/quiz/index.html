@@ -4,7 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="../../public/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="https://use.typekit.net/kyd1imk.css" />
 		<link rel="stylesheet" href="./css/styles.css" />
 		<title>Quiz</title>
 	</head>
@@ -24,24 +23,22 @@
 		<!-- A wrapper container each question -->
 		<template id="question">
 			<article>
-				<div class="inner-wrapper">
-					<div class="show answer-symbol"></div>
-					<div class="q-head">
-						<h3>Question: <span></span></h3>
-						<h3 class="required show now"></h3>
-						<div class="q-controls">
-							<button>X</button>
-							<button>↑</button>
-							<button>↓</button>
-						</div>
+				<div class="show answer-symbol"></div>
+				<div class="q-head">
+					<h3>Question: <span></span></h3>
+					<h3 class="required show now"></h3>
+					<div class="q-controls">
+						<button>X</button>
+						<button>↑</button>
+						<button>↓</button>
 					</div>
-					<div class="text-wrapper">
-						<div class="question-wrapper">
-							<h1></h1>
-						</div>
-						<div class="answer-wrapper">
-							<!-- Answers goes here -->
-						</div>
+				</div>
+				<div class="inner-wrapper">
+					<div class="question-wrapper">
+						<h1></h1>
+					</div>
+					<div class="answer-wrapper">
+						<!-- Answers goes here -->
 					</div>
 				</div>
 			</article>
@@ -66,14 +63,14 @@
 
 		<!-- Display results -->
 		<template id="result">
-			<article class="result">
+			<article class="result flex">
 				<div>
 					<button class="submit" id="submit">Submit</button>
 				</div>
-				<div class="err">
+                <div class="err flex">
 					<p>Please answer all questions before submitting</p>
 				</div>
-				<div class="res">
+				<div class="res flex">
 					<h1>Congratulations!</h1>
 					<p>Total score <span id="score"></span></p>
 				</div>
@@ -84,6 +81,7 @@
 		<template id="create-quiz">
 			<article class="create">
 				<form enctype="multipart/form-data">
+
 					<div class="q-head">
 						<h2>Create quiz</h2>
 						<select name="q-quiz" id="q-select">
@@ -91,85 +89,78 @@
 						</select>
 					</div>
 
-					<div class="inner-wrapper">
-						<div class="control">
-							<h4 class="col-1">Name</h4>
-							<div class="col-2">
-								<input id="quiz-name" type="text" name="name" placeholder="What is the name of your quiz?" />
-							</div>
+					<div class="control">
+						<h4 class="col-1">Name</h4>
+						<div class="col-2">
+							<input id="quiz-name" type="text" name="name" placeholder="What is the name of your quiz?" />
 						</div>
+					</div>
 
-						<div class="control">
-							<h4 class="col-1">Question</h4>
-							<div class="col-2">
-								<input
-									id="create"
-									type="text"
-									name="question"
-									placeholder="Enter a new question..."
-									spellcheck="true"
-								/>
-							</div>
+					<div class="control">
+						<h4 class="col-1">Question</h4>
+						<div class="col-2">
+							<input id="create" type="text" name="question" placeholder="Enter a new question..." spellcheck="true" />
 						</div>
+					</div>
 
-						<div class="control">
-							<h4 class="col-1">Type</h4>
-							<div id="type-container" class="col-2">
-								<input id="radio-text" name="type" type="radio" value="text" />
-								<label for="radio-text"> Text Field </label>
-								<input id="radio-multi" type="radio" name="type" value="multi" checked />
-								<label for="radio-multi"> Multiple Option</label>
-							</div>
+					<div class="control">
+						<h4 class="col-1">Type</h4>
+						<div id="type-container" class="col-2">
+							<input id="radio-text" name="type" type="radio" value="text" />
+							<label for="radio-text"> Text Field </label>
+							<input id="radio-multi" type="radio" name="type" value="multi" checked />
+							<label for="radio-multi"> Multiple Option</label>
 						</div>
+					</div>
 
-						<div class="control hide" id="option-text">
-							<h4 class="col-1">Answer</h4>
-							<div class="col-2">
-								<input id="answers" type="text" name="answers" placeholder="Enter your answer (-s) here..." /><br />
-								<i>Answers may be separated by comma (elk, moose, reindeer)</i>
-								<div class="required">
-									<input id="required" type="checkbox" name="isRequired" />
-									<label for="required">is required</label>
-								</div>
-							</div>
-						</div>
-
-						<div class="control" id="option-multi">
-							<h4 class="col-1">Options</h4>
-							<div class="col-2 m-container">
-								<span>Enter answers and check if correct</span>
-								<div id="m-options">
-									<div id="m-items">
-										<template id="m-template">
-											<div class="grid-container">
-												<input class="col-1" type="text" name="" placeholder="Enter your option here..." />
-												<div class="col-2 cbox">
-													<input type="checkbox" name="" />
-												</div>
-												<button class="col-3">🗑</button>
-											</div>
-										</template>
-									</div>
-									<div class="grid-container">
-										<button id="plus-button" class="col-3">+</button>
-									</div>
-									<div>
-										<input id="required" type="checkbox" name="isRequired" />
-										<label for="required">is required</label> <br />
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="control">
-							<h4 class="col-1">Action</h4>
-							<div class="col-2 actions">
-								<input id="delete" type="button" value="Delete" />
-								<input id="back" type="button" value="Back" />
-								<input id="submit" type="submit" value="Submit" />
+					<div class="control hide" id="option-text">
+						<h4 class="col-1">Answer</h4>
+						<div class="col-2">
+							<input id="answers" type="text" name="answers" placeholder="Enter your answer (-s) here..." /><br />
+							<i>Answers may be separated by comma (elk, moose, reindeer)</i>
+							<div class="required">
+								<input id="required" type="checkbox" name="isRequired" />
+								<label for="required">is required</label>
 							</div>
 						</div>
 					</div>
+
+					<div class="control" id="option-multi">
+						<h4 class="col-1">Options</h4>
+						<div class="col-2 m-container">
+							<span>Enter answers and check if correct</span>
+							<div id="m-options">
+								<div id="m-items">
+									<template id="m-template">
+										<div class="grid-container">
+											<input class="col-1" type="text" name="" placeholder="Enter your option here..." />
+											<div class="col-2 cbox">
+												<input type="checkbox" name="" />
+											</div>
+											<button class="col-3">🗑</button>
+										</div>
+									</template>
+								</div>
+								<div class="grid-container">
+									<button id="plus-button" class="col-3">+</button>
+								</div>
+								<div>
+									<input id="required" type="checkbox" name="isRequired" />
+									<label for="required">is required</label> <br />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="control">
+						<h4 class="col-1">Action</h4>
+						<div class="col-2 actions">
+							<input id="delete" type="button" value="Delete" />
+							<input id="back" type="button" value="Back" />
+							<input id="submit" type="submit" value="Submit" />
+						</div>
+					</div>
+
 				</form>
 			</article>
 		</template>

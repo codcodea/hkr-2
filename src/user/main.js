@@ -15,10 +15,10 @@ const initForm = () => {
     // Show welcome message
 	const visitor = document.querySelector("#visitor");
 	if (!user) {
-		visitor.innerHTML = "visitor";
+		visitor.innerHTML = "Welcome visitor!";
 		return;
 	}
-	visitor.innerHTML = user[0];
+	visitor.innerHTML = "Welcome " + user[0] +"!";
 
 	// Pre-fill form
 	const inputs = document.querySelectorAll("input");
@@ -55,7 +55,6 @@ const validateForm = (e) => {
 // Handler for delete button
 const deleteAccount = (e) => {
     e.preventDefault();
-    console.log("Delete account")
 	if(deleteUser()){
         window.location.href = baseUrl;
     }

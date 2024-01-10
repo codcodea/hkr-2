@@ -27,6 +27,9 @@ article {
 		align-items: center;
 		padding: 1rem 1rem;
 
+        border-top-left-radius: var(--border-radius-lg);
+        border-top-right-radius: var(--border-radius-lg);
+
         background-color: var(--theme-accent-1);
 
 		& .q-controls {
@@ -50,6 +53,11 @@ article {
 				background-color: var(--theme-accent-3);
 			}
 		}
+
+        & span {
+            font-weight: 600;
+            color: var(--theme-accent-2);
+        }
 	}
 
 	& .answer-symbol {
@@ -61,31 +69,32 @@ article {
 	}
 }
 
+article.result {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
 .inner-wrapper {
-    background-color: var(--white-0);
-    border-radius: var(--border-radius-lg);
-}
-
-.text-wrapper {
     padding: 1.5rem 1.5rem;
-}
 
-.answer-wrapper {
-	width: 100%;
-    margin: 0 auto;
-	padding: 1.5rem 1.5rem;
-    /* border: 1px solid var(--gray-7);
-    border-radius: var(--border-radius); */
-    background-color: var(--white-0);
-
-	& .answer {
-		margin-left: 0.3rem;
-		font-family: monospace;
-		font-size: 0.8rem;
-	}
-	& > div {
-		margin-bottom: 0.35rem;
-	}
+    & .answer-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        padding: 1.5rem 1.5rem;
+        /* border: 1px solid var(--gray-7);
+        border-radius: var(--border-radius); */
+        /* background-color: var(--white-0); */
+    
+        & .answer {
+            margin-left: 0.3rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        & > div {
+            margin-bottom: 0.35rem;
+        }
+    }
 }
 
 /* Answers and result visiability */
@@ -99,6 +108,7 @@ article {
 .res,
 .err {
 	visibility: hidden;
+    margin-top: 1rem;
 	&.now {
 		visibility: visible;
 	}
@@ -118,6 +128,10 @@ article {
 		margin: 0 auto;
 		background-color: var(--white-0);
 	}
+
+    .inner-wrapper {
+        padding: 0rem;
+    }
 
 	article {
 		position: relative;
