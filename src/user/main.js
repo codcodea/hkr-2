@@ -34,8 +34,6 @@ const initForm = () => {
 	// Change the appearance of submit button
 	const submit = document.querySelector("input[type='submit']");
 	submit.value = "Continue";
-
-
 };
 
 // Handler for submit button

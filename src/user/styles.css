@@ -109,7 +109,7 @@ input[type="submit"] {
     left: 0;
     z-index: -1;
    
-    background-image: url(/public/image_0.jpg);
+    background-image: url(../../public/image_0.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

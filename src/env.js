@@ -5,7 +5,9 @@ const config = {
 
 const getEnv = () => {
 	const host = window.location.hostname;
-	return host === "localhost" || "127.0.0.1" ? config["dev"] : config["prod"];
+	const baseUrl =  host === ("localhost" || "127.0.0.1") ? config["dev"] : config["prod"];
+    console.log(baseUrl);
+    return baseUrl;
 };
 
 export { getEnv };
