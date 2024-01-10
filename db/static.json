@@ -59,7 +59,7 @@
             "type": "multiple",
             "isRadio": true,
             "question": "What is 'Treriksröset'?",
-            "correct_answer": ["The geographic point"],
+            "correct_answer": ["A geographic point"],
             "incorrect_answers": [
                 "A Viking ship",
                 "A mountain",

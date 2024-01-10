@@ -27,8 +27,8 @@ article {
 		align-items: center;
 		padding: 1rem 1rem;
 
-        border-top-left-radius: var(--border-radius-lg);
-        border-top-right-radius: var(--border-radius-lg);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
 
         background-color: var(--theme-accent-1);
 
