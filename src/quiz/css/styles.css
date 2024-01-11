@@ -137,8 +137,6 @@ article.result {
 		position: relative;
 		width: 95%;
 
-		/* border: 1px solid var(--gray-3); */
-		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 		margin: 4rem auto;
 		padding: 0;
