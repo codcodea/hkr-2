@@ -131,13 +131,10 @@ class Validator {
 		// Find the error element
 		let errorElement;
 
-		console.log(key, message);
-
 		switch (key) {
 			case "correct_answer":
 				if (isText) errorElement = this.get("#answers");
 				else errorElement = document.querySelector(".cbox input[type='checkbox']");
-				console.log(errorElement);
 				break;
 			case "incorrect_answers":
 				const elems = this.getAll(`input[placeholder="Enter your option here..."]`);

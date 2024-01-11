@@ -20,7 +20,6 @@ const fetchStaticQuiz = async (name) => {
 const fetchDynamicQuiz = async () => {
 	const resp = await fetch(QUIZZ);
 	const data = await resp.json();
-	console.log(resp.statusText);
 	if (resp.status !== 200) {
 		if (resp.status == 429) return [false, "\nToo many requests. Please try again later."];
 		else return [false, resp.statusText];
