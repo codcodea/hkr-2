@@ -1,2 +1,2 @@
-## HKR
-DA558A L2
+## Quiz app working with local storate
+Maybe I'll add some more features later on

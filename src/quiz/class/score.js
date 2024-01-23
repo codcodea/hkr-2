@@ -1,4 +1,3 @@
-
 /* 
     This class is responsible for calculating the score (state) of a quiz.
 */
